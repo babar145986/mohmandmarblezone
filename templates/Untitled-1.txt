@@ -1,0 +1,247 @@
+{% extends 'basic/basic.html' %}
+
+{% load static %}
+
+{% block content %}
+
+{% include 'basic/top_navbar.html' %}
+
+{% include 'basic/center_navbar.html' %}
+
+{% include 'basic/main_navbar.html' %}
+
+<div id="bootstrap-touch-slider" class="carousel bs-slider fade control-round indicators-line" data-ride="carousel"
+    data-pause="hover" data-interval="false">
+
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#bootstrap-touch-slider" data-slide-to="0" class="active"></li>
+        <li data-target="#bootstrap-touch-slider" data-slide-to="1"></li>
+        <li data-target="#bootstrap-touch-slider" data-slide-to="2"></li>
+    </ol>
+
+    <!-- Wrapper For Slides -->
+    <div class="carousel-inner" role="listbox">
+        <div class="item active" style="background-image:url({% static 'assets/uploads/slider-1.jpg' %});">
+            <div class="bs-slider-overlay"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="slide-text slide_style_center">
+                        <h1 data-animation="animated flipInX">Mohmand Marble Zone</h1>
+                        <p data-animation="animated fadeInDown">Shop Online for Latest Marbles</p>
+                        <a href="" target="_blank" class="btn btn-primary"
+                            data-animation="animated fadeInDown">Marbles</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="item " style="background-image:url({% static 'assets/uploads/slider-2.jpg' %});">
+            <div class="bs-slider-overlay"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="slide-text slide_style_center">
+                        <h1 data-animation="animated flipInX">50% Discount on All Products</h1>
+                        <p data-animation="animated fadeInDown">Lorem ipsum dolor sit amet, an labores explicari
+                            qui, eu nostrum copiosae argumentum has.</p>
+                        <a href="#" target="_blank" class="btn btn-primary" data-animation="animated fadeInDown">Read
+                            More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="item " style="background-image:url({% static 'assets/uploads/slider-3.jpg' %});">
+            <div class="bs-slider-overlay"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="slide-text slide_style_right">
+                        <h1 data-animation="animated zoomInRight">24 Hours Customer Support</h1>
+                        <p data-animation="animated fadeInRight">Lorem ipsum dolor sit amet, an labores explicari
+                            qui, eu nostrum copiosae argumentum has.</p>
+                        <a href="#" target="_blank" class="btn btn-primary" data-animation="animated fadeInRight">Read
+                            More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slider Left Control -->
+    <a class="left carousel-control" href="#bootstrap-touch-slider" role="button" data-slide="prev">
+        <span class="fa fa-angle-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+
+    <!-- Slider Right Control -->
+    <a class="right carousel-control" href="#bootstrap-touch-slider" role="button" data-slide="next">
+        <span class="fa fa-angle-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+
+</div>
+
+
+<div class="service bg-gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="item">
+                    <div class="photo"><img src="{% static 'assets/uploads/service-5.png' %}" width="150px"
+                            alt="Easy Returns">
+                    </div>
+                    <h3>Easy Returns</h3>
+                    <p>
+                        Return any Tiles & Marbles before 2 or 3 days! </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="item">
+                    <div class="photo"><img src="{% static 'assets/uploads/service-6.png' %}" width="150px"
+                            alt="Discount Shipping"></div>
+                    <h3>Discount Shipping</h3>
+                    <p>
+                        Enjoy Discount shipping inside US. </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="item">
+                    <div class="photo"><img src="{% static 'assets/uploads/service-7.png' %}" width="150px"
+                            alt="Fast Shipping">
+                    </div>
+                    <h3>Fast Shipping</h3>
+                    <p>
+                        Tiles & Marbles are shipped within 24 hours. </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="item">
+                    <div class="photo"><img src="{% static 'assets/uploads/service-8.png' %}" width="150px"
+                            alt="Satisfaction Guarantee"></div>
+                    <h3>Satisfaction Guarantee</h3>
+                    <p>
+                        We guarantee you with our quality satisfaction. </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="item">
+                    <div class="photo"><img src="{% static 'assets/uploads/service-9.png' %}" width="150px"
+                            alt="Secure Checkout">
+                    </div>
+                    <h3>Secure Checkout</h3>
+                    <p>
+                        Providing Secure Checkout Options for all </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="item">
+                    <div class="photo"><img src="{% static 'assets/uploads/service-10.png' %}" width="150px"
+                            alt="Money Back Guarantee"></div>
+                    <h3>Money Back Guarantee</h3>
+                    <p>
+                        Offer money back guarantee on our products </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Marble Main Products Listing Start -->
+
+<div class="product pt_70 pb_70">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="headline">
+                    <h2>Quality Marbles Brands</h2>
+                    <h3>Our list on Top of Marbles Brands</h3>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="product-carousel">
+
+                    {% for i in all_products %}
+
+                    <div class="item">
+                        <div class="thumb">
+                            <div class="photo" style="background-image:url({{i.featured_photo.url}});"></div>
+                            <div class=""></div>
+                        </div>
+                        <div class="text">
+                            <h3><a href="{% url 'single_product' i.id %}">{{i.product_name}}</a></h3>
+                            <h4>
+                                SQ.FT - <span style="color: green; font-weight: bold; font-size: 25px;"> {{i.current_price}} </span> Rs
+                            </h4>
+                            <div class="rating">
+                            </div>
+                            <p><a href="{% url 'single_product' i.id %}"><i class="fa fa-shopping-cart">
+                            </i> Add to Cart</a></p>
+                        </div>
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="product bg-gray pt_70 pb_30">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="headline">
+                    <h2>Latest Marble</h2>
+                    <h3>Popular Marbles based on customer's choice</h3>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="product-carousel">
+                    {% for i in latest_products %}
+                    <div class="item">
+                        <div class="thumb">
+                            <div class="photo" style="background-image:url({{i.featured_photo.url}});"></div>
+                            <div class="overlay"></div>
+                        </div>
+                        <div class="text">
+                            <h3><a href="{% url 'single_product' i.id %}">{{i.product_name}}</a></h3>
+                            <h4>
+                                sq.ft-{{i.old_price}}
+                                <del>
+                                    sq.ft-{{i.current_price}} </del>
+                            </h4>
+                            <div class="rating">
+                            </div>
+                            <p><a href="{% url 'single_product' i.id %}"><i class="fa fa-shopping-cart"></i> Add to Cart</a></p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#save-product-form').submit(function(event) {
+    event.preventDefault();
+    var pk = $(this).data('pk');
+    $.ajax({
+        url: '/account/user_product_save/' + pk + '/',
+        method: 'POST',
+        success: function(data) {
+            console.log(data.message);
+        }
+    });
+});
+</script>
+
+{% include 'basic/footer.html' %}
+
+{% endblock %}

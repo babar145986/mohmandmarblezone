@@ -1,0 +1,40 @@
+{% load static %}
+
+<header class="main-header">
+
+    <a href="{% url 'administrator' %}" class="logo">
+        <span class="logo-lg"> Mohmand Marble </span>
+    </a>
+
+    <nav class="navbar navbar-static-top">
+
+        <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+        </a>
+
+        <span style="float:left;line-height:50px;color:#fff;padding-left:15px;font-size:18px;">Admin
+            Panel</span>
+        <!-- Top Bar ... User Inforamtion .. Login/Log out Area -->
+        <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+                <li class="dropdown user user-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <img src="{% static 'assets/uploads/user-1.png' %}" class="user-image" alt="User Image">
+                        <span class="hidden-xs">Administrator</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="user-footer">
+                            <div>
+                                <a href="{% url 'update_admin_info' %}" class="btn btn-default btn-flat">Edit Profile</a>
+                            </div>
+                            <div>
+                                <a href="{% url 'super_user_logout' %}" class="btn btn-default btn-flat">Log out</a>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+    </nav>
+</header>

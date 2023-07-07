@@ -1,0 +1,229 @@
+{% extends 'basic/basic.html' %}
+
+{% load static %}
+
+{% block content %}
+
+    {% include 'basic/top_navbar.html' %}
+
+    {% include 'basic/center_navbar.html' %}
+
+    {% include 'basic/main_navbar.html' %}
+
+	<div class="page">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="breadcrumb mb_30">
+						<ul>
+							<li><a href="">Home</a></li>
+							<li>></li>
+							<li><a href="#">{{get_product.select_top_category}}</a></li>
+							<li>></li>
+							<li><a href="#">{{get_product.select_mid_category}}</a></li>
+							<li>></li>
+							<li><a href="#">{{get_product.select_end_category}}</a>
+							</li>
+							<li>></li>
+							<li>{{get_product.product_name}}</li>
+						</ul>
+					</div>
+					{% include 'basic/messages.html' %}
+					<div class="product">
+						<div class="row">
+							<div class="col-md-5">
+								<ul class="prod-slider">
+									<li style="background-image: url({{get_product.featured_photo.url}});">
+										<a class="popup" href="{{get_product.featured_photo.url}}"></a>
+									</li>
+									{% if get_product.photo_1 %}
+									<li style="background-image: url({{get_product.photo_1.url}});">
+										<a class="popup" href="{{get_product.photo_1.url}}"></a>
+									</li>
+									{% endif %}
+									{% if get_product.photo_2 %}
+									<li style="background-image: url({{get_product.photo_2.url}});">
+										<a class="popup" href="{{get_product.photo_2.url}}"></a>
+									</li>
+									{% endif %}
+									{% if get_product.photo_3 %}
+									<li style="background-image: url({{get_product.photo_3.url}});">
+										<a class="popup" href="{{get_product.photo_3.url}}"></a>
+									</li>
+									{% endif %}
+									{% if get_product.photo_4 %}
+									<li style="background-image: url({{get_product.photo_4.url}});">
+										<a class="popup" href="{{get_product.photo_4.url}}"></a>
+									</li>
+									{% endif %}
+								</ul>
+								<div id="prod-pager">
+									<a data-slide-index="0" href="">
+										<div class="prod-pager-thumb"
+											style="background-image: url({{get_product.featured_photo.url}})"></div>
+									</a>
+									{% if get_product.photo_1 %}
+									<a data-slide-index="1" href="">
+										<div class="prod-pager-thumb"
+											style="background-image: url({{get_product.photo_1.url}})"></div>
+									</a>
+									{% endif %}
+									{% if get_product.photo_2 %}
+									<a data-slide-index="2" href="">
+										<div class="prod-pager-thumb"
+											style="background-image: url({{get_product.photo_2.url}})"></div>
+									</a>
+									{% endif %}
+									{% if get_product.photo_3 %}
+									<a data-slide-index="3" href="">
+										<div class="prod-pager-thumb"
+											style="background-image: url({{get_product.photo_3.url}})"></div>
+									</a>
+									{% endif %}
+									{% if get_product.photo_4 %}
+									<a data-slide-index="4" href="">
+										<div class="prod-pager-thumb"
+											style="background-image: url({{get_product.photo_4.url}})"></div>
+									</a>
+									{% endif %}
+									
+								</div>
+							</div>
+							<div class="col-md-7 col-sm-7 col-xs-12">
+								<div class="p-title">
+									<h2>{{get_product.product_name}}</h2>
+								</div>
+								<div class="p-review">
+									<div class="rating">
+									</div>
+								</div>
+								<div class="p-short-des">
+									<p>
+									<p> {{get_product.description}} </p>
+									</p>
+								</div>
+								<form action="{% url 'user_product_save_real' %}" method="post">
+									{% csrf_token %}
+									<input type="hidden" value="{{get_product.id}}" name="id">
+									<div class="p-quantity">
+										<div class="row">
+											<div class="col-md-12 mb_20">
+												Select Size <br>
+												<select name="size_name" class="form-control select2" style="width:auto;">
+													{% for size in get_product.select_size.all %}
+													<option value="{{size.size_name}}">{{size.size_name}}</option>
+													{% endfor %}
+												</select>
+											</div>
+											<div class="col-md-12">
+												Select Color <br>
+												<select name="color_name" class="form-control select2"
+													style="width:auto;">
+													{% for color in get_product.select_color.all %}
+													<option value="{{color.color_name}}">{{color.color_name}}</option>
+													{% endfor %}
+												</select>
+											</div>
+										</div>
+									</div>
+									<div class="p-price">
+										<span style="font-size:14px;">Product Price</span><br>
+										SQ.FT - <span style="color: green; font-weight: bold; font-size: 25px;"> {{get_product.current_price}} </span> Rs
+									</div>
+									<input type="hidden" name="p_current_price" value="{{get_product.current_price}}">
+									<input type="hidden" name="p_name" value="Other Natural Tiles">
+									<input type="hidden" name="p_featured_photo" value="product-featured-92.jpg">
+									<div class="p-quantity">
+										Quantity <br>
+										<input type="number" class="input-text qty" step="1" min="1" max="" name="p_qty"
+											value="{{get_product.quantity}}" title="Qty" size="4" pattern="[0-9]*" inputmode="numeric">
+									</div>
+									<div class="btn-cart btn-cart1">
+										<input type="submit" value="Add to Cart" name="form_add_to_cart">
+									</div>
+								</form>
+								<div class="share">
+									Share This Product <br>
+									<div class="sharethis-inline-share-buttons"></div>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-md-12">
+								<!-- Nav tabs -->
+								<ul class="nav nav-tabs" role="tablist">
+									<li role="presentation" class="active"><a href="#description"
+											aria-controls="description" role="tab" data-toggle="tab">Product
+											Description</a></li>
+									<li role="presentation"><a href="#feature" aria-controls="feature" role="tab"
+											data-toggle="tab">Features</a></li>
+									<li role="presentation"><a href="#condition" aria-controls="condition" role="tab"
+											data-toggle="tab">Conditions</a></li>
+									<li role="presentation"><a href="#return_policy" aria-controls="return_policy"
+											role="tab" data-toggle="tab">Return Policy</a></li>
+									<!-- <li role="presentation"><a href="#review" aria-controls="review" role="tab" data-toggle="tab">Reviews</a></li> -->
+								</ul>
+
+								<!-- Tab panes -->
+								<div class="tab-content">
+									<div role="tabpanel" class="tab-pane active" id="description"
+										style="margin-top: -30px;">
+										<p>
+										<p>
+											<h4>Description</h4>
+											{{get_product.description}}
+										</p>
+									</div>
+									<div role="tabpanel" class="tab-pane" id="feature" style="margin-top: -30px;">
+										<p>
+											<h4>Feature Description</h4>
+											{{get_product.featured_desc}}
+										</p>
+									</div>
+									<div role="tabpanel" class="tab-pane" id="condition" style="margin-top: -30px;">
+										<p>
+										<p>
+											<h4>Condition</h4>
+											{{get_product.condition_desc}}
+										</p>
+										</p>
+									</div>
+									<div role="tabpanel" class="tab-pane" id="return_policy" style="margin-top: -30px;">
+										<p>
+										<p>
+											<h4>Return Policy</h4>
+											{{get_product.return_policy_desc}}
+										</p>
+										</p>
+									</div>
+									<div role="tabpanel" class="tab-pane" id="review" style="margin-top: -30px;">
+
+										<div class="review-form">
+											<h2>Reviews (0)</h2>
+											Review not found
+											<h2>Give a Review</h2>
+											<p class="error">
+												You must have to login to give a review <br>
+												<a href="login.php"
+													style="color:red;text-decoration: underline;">Login</a>
+											</p>
+
+										</div>
+
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+
+	{% include 'basic/footer.html' %}
+
+    {% endblock %}

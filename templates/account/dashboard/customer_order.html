@@ -1,0 +1,86 @@
+{% extends 'basic/basic.html' %}
+
+{% load static %}
+
+{% block content %}
+
+    {% include 'basic/top_navbar.html' %}
+
+      {% include 'basic/center_navbar.html' %}
+      
+      {% include 'basic/main_navbar.html' %}
+
+	<div class="page">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					{% include 'account/dashboard/user_navbar.html' %}
+				</div>
+				<div class="col-md-12">
+					<div class="user-content">
+						<h3>Order History</h3>
+						<div class="table-responsive">
+							<table class="table table-bordered table-striped table-hover">
+								<thead>
+									<tr>
+										<th>#</th>
+										<th>Product Image</th>
+										<th>Product Details</th>
+										<th>Date and Time</th>
+										<th>Product Amount</th>
+										<th>Quantity</th>
+										<th>Order Status</th>
+										<th>Delivery Type</th>
+									</tr>
+								</thead>
+								<tbody>
+									{% for i in order_products %}
+									<tr>
+										<td>{{forloop.counter}}</td>
+										<td style="width: 18%;">
+											<img src="{{i.product.product.featured_photo.url}}" alt="" width="40%">
+										</td>
+										<td>
+											{{i.product.product.product_name}}<br>
+											{{i.product.color}}<br>
+											{{i.product.size}}
+										</td>
+										<td>{{i.issue_date}}</td>
+										<td>{{i.product.total}} RS</td>
+										<td>sq.ft- {{i.product.quantity}}</td>
+										<td>
+											{% if i.status == "Pending" %}
+												<button class="btn btn-warning btn-sm">
+													Pending
+												</button>
+											{% elif i.status == "Completed" %}
+											<button class="btn btn-success btn-sm">
+												Completed
+											</button>
+											{% else %}
+											<button class="btn btn-danger btn-sm">
+												Not Available
+											</button>
+											{% endif %}
+										</td>
+										<td style="text-transform: uppercase;">{{i.delivery_type}}
+											{% if i.delivery_type == "express" %}
+												<p style="color: red;">Charges: 200 RS</p>
+											{% else %}
+												<p style="color: red;">Charges: 300 RS</p>
+											{% endif %}
+										</td>
+									</tr>
+									{% endfor %}
+								</tbody>
+							</table>
+							<div class="pagination" style="overflow: hidden;">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		{% include 'basic/footer.html' %}
+
+		{% endblock %}

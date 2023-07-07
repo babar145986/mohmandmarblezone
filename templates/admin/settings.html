@@ -1,0 +1,1440 @@
+{% extends 'admin/basic/basic.html' %}
+
+{% load static %}
+
+{% block content %}
+
+	<div class="wrapper">
+
+		{% include 'admin/basic/top_navbar.html' %}
+
+		{% include 'admin/basic/sidebar.html' %}
+
+        <div class="content-wrapper">
+            <section class="content-header">
+                <div class="content-header-left">
+                    <h1>Website Settings</h1>
+                </div>
+            </section>
+
+            <section class="content" style="min-height:auto;margin-bottom: -30px;">
+                <div class="row">
+                    <div class="col-md-12">
+
+                    </div>
+                </div>
+            </section>
+
+            <section class="content">
+
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <div class="nav-tabs-custom">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#tab_1" data-toggle="tab">Logo</a></li>
+                                <li><a href="#tab_2" data-toggle="tab">Favicon</a></li>
+                                <li><a href="#tab_3" data-toggle="tab">Footer & Contact</a></li>
+                                <!--<li><a href="#tab_11" data-toggle="tab">Ads</a></li>-->
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="tab_1">
+
+
+                                    <form class="form-horizontal" action="{% url 'upload_logo' %}" method="post" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <div class="box box-info">
+                                            <div class="box-body">
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-2 control-label">Existing Photo</label>
+                                                    <div class="col-sm-6" style="padding-top:6px;">
+                                                        <img src="{{get_logo.upload_logo.url}}" class="existing-photo"
+                                                            style="height:80px;" >
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-2 control-label">New Photo</label>
+                                                    <div class="col-sm-6" style="padding-top:6px;">
+                                                        <input type="file" name="photo_logo" required>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-2 control-label"></label>
+                                                    <div class="col-sm-6">
+                                                        <button type="submit" class="btn btn-success pull-left"
+                                                            name="form1">Update Logo</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+
+
+
+
+                                </div>
+                                <div class="tab-pane" id="tab_2">
+
+                                    <form class="form-horizontal" action="{% url 'upload_favicon' %}" method="post" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <div class="box box-info">
+                                            <div class="box-body">
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-2 control-label">Existing Photo</label>
+                                                    <div class="col-sm-6" style="padding-top:6px;">
+                                                        <img src="{{get_favicon.upload_favicon.url}}" class="existing-photo"
+                                                            style="height:40px;">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-2 control-label">New Photo</label>
+                                                    <div class="col-sm-6" style="padding-top:6px;">
+                                                        <input type="file" name="photo_favicon" required>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-2 control-label"></label>
+                                                    <div class="col-sm-6">
+                                                        <button type="submit" class="btn btn-success pull-left"
+                                                            name="form2">Update Favicon</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="tab-pane" id="tab_3">
+                                    <form class="form-horizontal" action="{% url 'update_footer_contact' %}" method="post">
+                                        {% csrf_token %}
+                                        <div class="box box-info">
+                                            <div class="box-body">
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-2 control-label">Newsletter Section
+                                                    </label>
+                                                    <div class="col-sm-3">
+                                                        <select name="newsletter_on_off" class="form-control"
+                                                            style="width:auto;">
+                                                            <option value="True" selected>On</option>
+                                                            <option value="False">Off</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-2 control-label">Footer - Copyright
+                                                    </label>
+                                                    <div class="col-sm-9">
+                                                        <input class="form-control" type="text" name="footer_copyright"
+                                                            value="{{get_footer_contact.footer_copyright}}">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-2 control-label">Contact Address
+                                                    </label>
+                                                    <div class="col-sm-6">
+                                                        <textarea class="form-control" name="contact_address"
+                                                            style="height:140px;">{{get_footer_contact.contact_address}}</textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-2 control-label">Contact Email </label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" class="form-control" name="contact_email"
+                                                            value="{{get_footer_contact.contact_email}}">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-2 control-label">Contact Phone Number
+                                                    </label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" class="form-control" name="contact_phone"
+                                                            value="{{get_footer_contact.contact_no}}">
+                                                    </div>
+                                                </div>
+                                                <!-- <div class="form-group">
+                                        <label for="" class="col-sm-2 control-label">Contact Fax Number </label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" name="contact_fax" value="<br />
+<b>Notice</b>:  Undefined variable: contact_fax in <b>C:\xampp\htdocs\tilesmarble\tilesmarble\admin\settings.php</b> on line <b>1008</b><br />
+">
+                                        </div>
+                                    </div>-->
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-2 control-label">Contact Map iFrame
+                                                    </label>
+                                                    <div class="col-sm-9">
+                                                        <textarea class="form-control" name="contact_map_iframe"
+                                                            style="height:200px;">{{get_footer_contact.map_iframe}} </textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-2 control-label"></label>
+                                                    <div class="col-sm-6">
+                                                        <button type="submit" class="btn btn-success pull-left"
+                                                            name="form3">Update</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+
+
+                                </div>
+
+                                <div class="tab-pane" id="tab_4">
+
+                                    <form class="form-horizontal" action="" method="post">
+                                        <div class="box box-info">
+                                            <div class="box-body">
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-3 control-label">Contact Email
+                                                        Address</label>
+                                                    <div class="col-sm-4">
+                                                        <input type="text" class="form-control" name="receive_email"
+                                                            value="tilesmarbles@gmail.com">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-3 control-label">Contact Email
+                                                        Subject</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control"
+                                                            name="receive_email_subject"
+                                                            value="Visitor Email Message from Tiles & Marbles PHP">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-3 control-label">Contact Email Thank you
+                                                        message</label>
+                                                    <div class="col-sm-8">
+                                                        <textarea class="form-control"
+                                                            name="receive_email_thank_you_message">Thank you for sending email. We will contact you shortly.</textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-3 control-label">Forget password
+                                                        Message</label>
+                                                    <div class="col-sm-8">
+                                                        <textarea class="form-control"
+                                                            name="forget_password_message">A confirmation link is sent to your email address. You will get the password reset information in there.</textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-3 control-label"></label>
+                                                    <div class="col-sm-5">
+                                                        <button type="submit" class="btn btn-success pull-left"
+                                                            name="form4">Update</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+
+
+                                </div>
+
+                                <div class="tab-pane" id="tab_5">
+
+                                    <form class="form-horizontal" action="" method="post">
+                                        <div class="box box-info">
+                                            <div class="box-body">
+                                                <!--<div class="form-group">
+                                        <label for="" class="col-sm-4 control-label">Footer (How many recent posts?)<span>*</span></label>
+                                        <div class="col-sm-2">
+                                            <input type="text" class="form-control" name="total_recent_post_footer" value="<br />
+<b>Notice</b>:  Undefined variable: total_recent_post_footer in <b>C:\xampp\htdocs\tilesmarble\tilesmarble\admin\settings.php</b> on line <b>1080</b><br />
+">
+                                        </div>
+                                    </div>      
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-4 control-label">Footer (How many popular posts?)<span>*</span></label>
+                                        <div class="col-sm-2">
+                                            <input type="text" class="form-control" name="total_popular_post_footer" value="<br />
+<b>Notice</b>:  Undefined variable: total_popular_post_footer in <b>C:\xampp\htdocs\tilesmarble\tilesmarble\admin\settings.php</b> on line <b>1086</b><br />
+">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-4 control-label">Sidebar (How many recent posts?)<span>*</span></label>
+                                        <div class="col-sm-2">
+                                            <input type="text" class="form-control" name="total_recent_post_sidebar" value="<br />
+<b>Notice</b>:  Undefined variable: total_recent_post_sidebar in <b>C:\xampp\htdocs\tilesmarble\tilesmarble\admin\settings.php</b> on line <b>1092</b><br />
+">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-4 control-label">Sidebar (How many popular posts?)<span>*</span></label>
+                                        <div class="col-sm-2">
+                                            <input type="text" class="form-control" name="total_popular_post_sidebar" value="<br />
+<b>Notice</b>:  Undefined variable: total_popular_post_sidebar in <b>C:\xampp\htdocs\tilesmarble\tilesmarble\admin\settings.php</b> on line <b>1098</b><br />
+">
+                                        </div>
+                                    </div>-->
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-4 control-label">Home Page (How many
+                                                        featured product?)<span>*</span></label>
+                                                    <div class="col-sm-2">
+                                                        <input type="text" class="form-control"
+                                                            name="total_featured_product_home" value="5">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-4 control-label">Home Page (How many
+                                                        latest product?)<span>*</span></label>
+                                                    <div class="col-sm-2">
+                                                        <input type="text" class="form-control"
+                                                            name="total_latest_product_home" value="6">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-4 control-label">Home Page (How many
+                                                        popular product?)<span>*</span></label>
+                                                    <div class="col-sm-2">
+                                                        <input type="text" class="form-control"
+                                                            name="total_popular_product_home" value="8">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-4 control-label"></label>
+                                                    <div class="col-sm-6">
+                                                        <button type="submit" class="btn btn-success pull-left"
+                                                            name="form5">Update</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+
+
+                                </div>
+
+
+
+
+                                <div class="tab-pane" id="tab_6">
+
+
+                                    <h3>Sections On and Off</h3>
+                                    <form class="form-horizontal" action="" method="post">
+                                        <div class="box box-info">
+                                            <div class="box-body">
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-3 control-label">Service Section
+                                                    </label>
+                                                    <div class="col-sm-4">
+                                                        <select name="home_service_on_off" class="form-control"
+                                                            style="width:auto;">
+                                                            <option value="1" selected>On</option>
+                                                            <option value="0">Off</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-3 control-label">Welcome Section
+                                                    </label>
+                                                    <div class="col-sm-4">
+                                                        <select name="home_welcome_on_off" class="form-control"
+                                                            style="width:auto;">
+                                                            <option value="1" selected>On</option>
+                                                            <option value="0">Off</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-3 control-label">Featured Product
+                                                        Section </label>
+                                                    <div class="col-sm-4">
+                                                        <select name="home_featured_product_on_off" class="form-control"
+                                                            style="width:auto;">
+                                                            <option value="1" selected>On</option>
+                                                            <option value="0">Off</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-3 control-label">Latest Product Section
+                                                    </label>
+                                                    <div class="col-sm-4">
+                                                        <select name="home_latest_product_on_off" class="form-control"
+                                                            style="width:auto;">
+                                                            <option value="1" selected>On</option>
+                                                            <option value="0">Off</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-3 control-label">Popular Product Section
+                                                    </label>
+                                                    <div class="col-sm-4">
+                                                        <select name="home_popular_product_on_off" class="form-control"
+                                                            style="width:auto;">
+                                                            <option value="1" selected>On</option>
+                                                            <option value="0">Off</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <!-- <div class="form-group">
+                                        <label for="" class="col-sm-3 control-label">Testimonial Section </label>
+                                        <div class="col-sm-4">
+                                            <select name="home_testimonial_on_off" class="form-control" style="width:auto;">
+                                            	<option value="1" <br />
+<b>Notice</b>:  Undefined variable: home_testimonial_on_off in <b>C:\xampp\htdocs\tilesmarble\tilesmarble\admin\settings.php</b> on line <b>1191</b><br />
+>On</option>
+                                            	<option value="0" <br />
+<b>Notice</b>:  Undefined variable: home_testimonial_on_off in <b>C:\xampp\htdocs\tilesmarble\tilesmarble\admin\settings.php</b> on line <b>1192</b><br />
+selected>Off</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-3 control-label">Blog Section </label>
+                                        <div class="col-sm-4">
+                                            <select name="home_blog_on_off" class="form-control" style="width:auto;">
+                                            	<option value="1" <br />
+<b>Notice</b>:  Undefined variable: home_blog_on_off in <b>C:\xampp\htdocs\tilesmarble\tilesmarble\admin\settings.php</b> on line <b>1200</b><br />
+>On</option>
+                                            	<option value="0" <br />
+<b>Notice</b>:  Undefined variable: home_blog_on_off in <b>C:\xampp\htdocs\tilesmarble\tilesmarble\admin\settings.php</b> on line <b>1201</b><br />
+selected>Off</option>
+                                            </select>
+                                        </div>
+                                    </div>-->
+
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-3 control-label"></label>
+                                                    <div class="col-sm-6">
+                                                        <button type="submit" class="btn btn-success pull-left"
+                                                            name="form6_0">Update</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+
+
+                                    <h3>Meta Section</h3>
+                                    <form class="form-horizontal" action="" method="post">
+                                        <div class="box box-info">
+                                            <div class="box-body">
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-3 control-label">Meta Title </label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" name="meta_title_home" class="form-control"
+                                                            value="Tiles and Marbles Management">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-3 control-label">Meta Keyword </label>
+                                                    <div class="col-sm-8">
+                                                        <textarea class="form-control" name="meta_keyword_home"
+                                                            style="height:100px;">online Tiled store, Marbles shop, online Tiles and Marbles</textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-3 control-label">Meta Description
+                                                    </label>
+                                                    <div class="col-sm-8">
+                                                        <textarea class="form-control" name="meta_description_home"
+                                                            style="height:200px;">Tiles and Marbles php project with mysql database</textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-3 control-label"></label>
+                                                    <div class="col-sm-6">
+                                                        <button type="submit" class="btn btn-success pull-left"
+                                                            name="form6">Update</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+
+
+
+                                    <!-- <h3>Call to Action Section</h3>
+                            <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+                            <div class="box box-info">
+                                <div class="box-body">                                          
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-3 control-label">Title<span>*</span></label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" name="cta_title" value="<br />
+<b>Notice</b>:  Undefined variable: cta_title in <b>C:\xampp\htdocs\tilesmarble\tilesmarble\admin\settings.php</b> on line <b>1258</b><br />
+">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-3 control-label">Content<span>*</span></label>
+                                        <div class="col-sm-8">
+                                            <textarea name="cta_content" class="form-control" cols="30" rows="10" style="height:120px;"><br />
+<b>Notice</b>:  Undefined variable: cta_content in <b>C:\xampp\htdocs\tilesmarble\tilesmarble\admin\settings.php</b> on line <b>1264</b><br />
+</textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-3 control-label">Read More Text<span>*</span></label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" name="cta_read_more_text" value="<br />
+<b>Notice</b>:  Undefined variable: cta_read_more_text in <b>C:\xampp\htdocs\tilesmarble\tilesmarble\admin\settings.php</b> on line <b>1270</b><br />
+">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-3 control-label">Read More URL<span>*</span></label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" name="cta_read_more_url" value="<br />
+<b>Notice</b>:  Undefined variable: cta_read_more_url in <b>C:\xampp\htdocs\tilesmarble\tilesmarble\admin\settings.php</b> on line <b>1276</b><br />
+">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-3 control-label">Existing Call to Action Background</label>
+                                        <div class="col-sm-6" style="padding-top:6px;">
+                                            <img src="../assets/uploads/<br />
+<b>Notice</b>:  Undefined variable: cta_photo in <b>C:\xampp\htdocs\tilesmarble\tilesmarble\admin\settings.php</b> on line <b>1282</b><br />
+" class="existing-photo" style="height:80px;">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-3 control-label">New Background</label>
+                                        <div class="col-sm-6" style="padding-top:6px;">
+                                            <input type="file" name="cta_photo">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-3 control-label"></label>
+                                        <div class="col-sm-6">
+                                            <button type="submit" class="btn btn-success pull-left" name="form6_7">Update</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </form>-->
+
+
+
+
+
+                                    <h3>Featured Product Section</h3>
+                                    <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+                                        <div class="box box-info">
+                                            <div class="box-body">
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-3 control-label">Featured Product
+                                                        Title<span>*</span></label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control"
+                                                            name="featured_product_title"
+                                                            value="Quality Marbles Brands">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-3 control-label">Featured Product
+                                                        SubTitle<span>*</span></label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control"
+                                                            name="featured_product_subtitle"
+                                                            value="Our list on Top of Marbles Brands">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-3 control-label"></label>
+                                                    <div class="col-sm-6">
+                                                        <button type="submit" class="btn btn-success pull-left"
+                                                            name="form6_4">Update</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+
+
+                                    <h3>Latest Product Section</h3>
+                                    <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+                                        <div class="box box-info">
+                                            <div class="box-body">
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-3 control-label">Latest Product
+                                                        Title<span>*</span></label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control"
+                                                            name="latest_product_title" value="Quality Tiles Brands">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-3 control-label">Latest Product
+                                                        SubTitle<span>*</span></label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control"
+                                                            name="latest_product_subtitle"
+                                                            value="Our list on Top Tiles Brands">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-3 control-label"></label>
+                                                    <div class="col-sm-6">
+                                                        <button type="submit" class="btn btn-success pull-left"
+                                                            name="form6_5">Update</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+
+
+                                    <h3>Popular Product Section</h3>
+                                    <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+                                        <div class="box box-info">
+                                            <div class="box-body">
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-3 control-label">Popular Product
+                                                        Title<span>*</span></label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control"
+                                                            name="popular_product_title" value="Best Tiles & Marbles
+">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-3 control-label">Popular Product
+                                                        SubTitle<span>*</span></label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control"
+                                                            name="popular_product_subtitle"
+                                                            value="Popular Tiles & Marbles based on customer's choice">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-3 control-label"></label>
+                                                    <div class="col-sm-6">
+                                                        <button type="submit" class="btn btn-success pull-left"
+                                                            name="form6_6">Update</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+
+
+                                    <!--
+                            <h3>Testimonial Section</h3>
+                            <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+                            <div class="box box-info">
+                                <div class="box-body">                                          
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-3 control-label">Testimonial Section Title<span>*</span></label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" name="testimonial_title" value="<br />
+<b>Notice</b>:  Undefined variable: testimonial_title in <b>C:\xampp\htdocs\tilesmarble\tilesmarble\admin\settings.php</b> on line <b>1394</b><br />
+">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-3 control-label">Testimonial Section SubTitle<span>*</span></label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" name="testimonial_subtitle" value="<br />
+<b>Notice</b>:  Undefined variable: testimonial_subtitle in <b>C:\xampp\htdocs\tilesmarble\tilesmarble\admin\settings.php</b> on line <b>1400</b><br />
+">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-3 control-label">Existing Testimonial Background</label>
+                                        <div class="col-sm-6" style="padding-top:6px;">
+                                            <img src="../assets/uploads/<br />
+<b>Notice</b>:  Undefined variable: testimonial_photo in <b>C:\xampp\htdocs\tilesmarble\tilesmarble\admin\settings.php</b> on line <b>1406</b><br />
+" class="existing-photo" style="height:80px;">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-3 control-label">New Background</label>
+                                        <div class="col-sm-6" style="padding-top:6px;">
+                                            <input type="file" name="testimonial_photo">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-3 control-label"></label>
+                                        <div class="col-sm-6">
+                                            <button type="submit" class="btn btn-success pull-left" name="form6_1">Update</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </form>
+
+
+                            <h3>Blog Section</h3>
+                            <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+                            <div class="box box-info">
+                                <div class="box-body">                                          
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-3 control-label">Blog Section Title<span>*</span></label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" name="blog_title" value="<br />
+<b>Notice</b>:  Undefined variable: blog_title in <b>C:\xampp\htdocs\tilesmarble\tilesmarble\admin\settings.php</b> on line <b>1433</b><br />
+">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-3 control-label">Blog Section SubTitle<span>*</span></label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" name="blog_subtitle" value="<br />
+<b>Notice</b>:  Undefined variable: blog_subtitle in <b>C:\xampp\htdocs\tilesmarble\tilesmarble\admin\settings.php</b> on line <b>1439</b><br />
+">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-3 control-label"></label>
+                                        <div class="col-sm-6">
+                                            <button type="submit" class="btn btn-success pull-left" name="form6_2">Update</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </form>
+
+                                    -->
+
+
+                                    <h3>Newsletter Section</h3>
+                                    <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+                                        <div class="box box-info">
+                                            <div class="box-body">
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-3 control-label">Newsletter Text</label>
+                                                    <div class="col-sm-8">
+                                                        <textarea name="newsletter_text" class="form-control" cols="30"
+                                                            rows="10"
+                                                            style="height: 120px;">Sign-up to our newsletter for latest promotions and discounts.</textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-3 control-label"></label>
+                                                    <div class="col-sm-6">
+                                                        <button type="submit" class="btn btn-success pull-left"
+                                                            name="form6_3">Update</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+
+
+                                </div>
+
+
+
+                                <div class="tab-pane" id="tab_7">
+
+                                    <table class="table table-bordered">
+                                        <tr>
+                                            <form action="" method="post" enctype="multipart/form-data">
+                                                <td style="width:50%">
+                                                    <h4>Existing Login Page Banner</h4>
+                                                    <p>
+                                                        <img src="{% static 'assets/uploads/banner_login.jpg' %}" alt=""
+                                                            style="width: 100%;height:auto;">
+                                                    </p>
+                                                </td>
+                                                <td style="width:50%">
+                                                    <h4>Change Login Page Banner</h4>
+                                                    Select Photo<input type="file" name="photo">
+                                                    <input type="submit" class="btn btn-primary btn-xs" value="Change"
+                                                        style="margin-top:10px;" name="form7_1">
+                                                </td>
+                                            </form>
+                                        </tr>
+                                        <tr>
+                                            <form action="" method="post" enctype="multipart/form-data">
+                                                <td style="width:50%">
+                                                    <h4>Existing Registration Page Banner</h4>
+                                                    <p>
+                                                        <img src="{% static 'assets/uploads/banner_registration.jpg' %}" alt=""
+                                                            style="width: 100%;height:auto;">
+                                                    </p>
+                                                </td>
+                                                <td style="width:50%">
+                                                    <h4>Change Registration Page Banner</h4>
+                                                    Select Photo<input type="file" name="photo">
+                                                    <input type="submit" class="btn btn-primary btn-xs" value="Change"
+                                                        style="margin-top:10px;" name="form7_2">
+                                                </td>
+                                            </form>
+                                        </tr>
+                                        <tr>
+                                            <form action="" method="post" enctype="multipart/form-data">
+                                                <td style="width:50%">
+                                                    <h4>Existing Forget Password Page Banner</h4>
+                                                    <p>
+                                                        <img src="{% static 'assets/uploads/banner_forget_password.jpg' %}" alt=""
+                                                            style="width: 100%;height:auto;">
+                                                    </p>
+                                                </td>
+                                                <td style="width:50%">
+                                                    <h4>Change Forget Password Page Banner</h4>
+                                                    Select Photo<input type="file" name="photo">
+                                                    <input type="submit" class="btn btn-primary btn-xs" value="Change"
+                                                        style="margin-top:10px;" name="form7_3">
+                                                </td>
+                                            </form>
+                                        </tr>
+                                        <tr>
+                                            <form action="" method="post" enctype="multipart/form-data">
+                                                <td style="width:50%">
+                                                    <h4>Existing Reset Password Page Banner</h4>
+                                                    <p>
+                                                        <img src="{% static 'assets/uploads/banner_reset_password.jpg' %}" alt=""
+                                                            style="width: 100%;height:auto;">
+                                                    </p>
+                                                </td>
+                                                <td style="width:50%">
+                                                    <h4>Change Reset Password Page Banner</h4>
+                                                    Select Photo<input type="file" name="photo">
+                                                    <input type="submit" class="btn btn-primary btn-xs" value="Change"
+                                                        style="margin-top:10px;" name="form7_4">
+                                                </td>
+                                            </form>
+                                        </tr>
+
+                                        <tr>
+                                            <form action="" method="post" enctype="multipart/form-data">
+                                                <td style="width:50%">
+                                                    <h4>Existing Search Page Banner</h4>
+                                                    <p>
+                                                        <img src="{% static 'assets/assets/uploads/banner_search.jpg' %}" alt=""
+                                                            style="width: 100%;height:auto;">
+                                                    </p>
+                                                </td>
+                                                <td style="width:50%">
+                                                    <h4>Change Search Page Banner</h4>
+                                                    Select Photo<input type="file" name="photo">
+                                                    <input type="submit" class="btn btn-primary btn-xs" value="Change"
+                                                        style="margin-top:10px;" name="form7_6">
+                                                </td>
+                                            </form>
+                                        </tr>
+
+
+                                        <tr>
+                                            <form action="" method="post" enctype="multipart/form-data">
+                                                <td style="width:50%">
+                                                    <h4>Existing Cart Page Banner</h4>
+                                                    <p>
+                                                        <img src="{% static 'assets/assets/uploads/banner_cart.jpg' %}" alt=""
+                                                            style="width: 100%;height:auto;">
+                                                    </p>
+                                                </td>
+                                                <td style="width:50%">
+                                                    <h4>Change Cart Page Banner</h4>
+                                                    Select Photo<input type="file" name="photo">
+                                                    <input type="submit" class="btn btn-primary btn-xs" value="Change"
+                                                        style="margin-top:10px;" name="form7_7">
+                                                </td>
+                                            </form>
+                                        </tr>
+
+
+                                        <tr>
+                                            <form action="" method="post" enctype="multipart/form-data">
+                                                <td style="width:50%">
+                                                    <h4>Existing Checkout Page Banner</h4>
+                                                    <p>
+                                                        <img src="{% static 'assets/assets/uploads/banner_checkout.jpg' %}" alt=""
+                                                            style="width: 100%;height:auto;">
+                                                    </p>
+                                                </td>
+                                                <td style="width:50%">
+                                                    <h4>Change Checkout Page Banner</h4>
+                                                    Select Photo<input type="file" name="photo">
+                                                    <input type="submit" class="btn btn-primary btn-xs" value="Change"
+                                                        style="margin-top:10px;" name="form7_8">
+                                                </td>
+                                            </form>
+                                        </tr>
+
+                                        <tr>
+                                            <form action="" method="post" enctype="multipart/form-data">
+                                                <td style="width:50%">
+                                                    <h4>Existing Product Category Page Banner</h4>
+                                                    <p>
+                                                        <img src="{% static 'assets/assets/uploads/banner_product_category.jpg' %}" alt=""
+                                                            style="width: 100%;height:auto;">
+                                                    </p>
+                                                </td>
+                                                <td style="width:50%">
+                                                    <h4>Change Product Category Page Banner</h4>
+                                                    Select Photo<input type="file" name="photo">
+                                                    <input type="submit" class="btn btn-primary btn-xs" value="Change"
+                                                        style="margin-top:10px;" name="form7_9">
+                                                </td>
+                                            </form>
+                                        </tr>
+
+                                        <!-- <tr>
+                                    <form action="" method="post" enctype="multipart/form-data">
+                                    <td style="width:50%">
+                                        <h4>Existing Blog Page Banner</h4>
+                                        <p>
+                                            <img src="<br />
+<b>Notice</b>:  Undefined variable: banner_blog in <b>C:\xampp\htdocs\tilesmarble\tilesmarble\admin\settings.php</b> on line <b>1615</b><br />
+../assets/uploads/" alt="" style="width: 100%;height:auto;">  
+                                        </p>                                        
+                                    </td>
+                                    <td style="width:50%">
+                                        <h4>Change Blog Page Banner</h4>
+                                        Select Photo<input type="file" name="photo">
+                                        <input type="submit" class="btn btn-primary btn-xs" value="Change" style="margin-top:10px;" name="form7_10">
+                                    </td>
+                                    </form>
+                                </tr>-->
+                                    </table>
+
+                                </div>
+
+                                <!-- PAYMENT METHODS TAB -->
+
+
+
+                                <div class="tab-pane" id="tab_9">
+                                    <form class="form-horizontal" action="" method="post">
+                                        <div class="box box-info">
+                                            <div class="box-body">
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-2 control-label">PayPal - Business Email
+                                                    </label>
+                                                    <div class="col-sm-5">
+                                                        <input type="text" name="paypal_email" class="form-control"
+                                                            value="admin@ecom.com">
+                                                    </div>
+                                                </div>
+                                                <!-- <div class="form-group">
+                                            <label for="" class="col-sm-2 control-label">Stripe - Public Key </label>
+                                            <div class="col-sm-5">
+                                                <input type="text" name="stripe_public_key" class="form-control" value="<br />
+<b>Notice</b>:  Undefined variable: stripe_public_key in <b>C:\xampp\htdocs\tilesmarble\tilesmarble\admin\settings.php</b> on line <b>1649</b><br />
+">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="" class="col-sm-2 control-label">Stripe - Secret Key </label>
+                                            <div class="col-sm-5">
+                                                <input type="text" name="stripe_secret_key" class="form-control" value="<br />
+<b>Notice</b>:  Undefined variable: stripe_secret_key in <b>C:\xampp\htdocs\tilesmarble\tilesmarble\admin\settings.php</b> on line <b>1655</b><br />
+">
+                                            </div>
+                                        </div> -->
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-2 control-label">Bank Information
+                                                    </label>
+                                                    <div class="col-sm-5">
+                                                        <textarea name="bank_detail" class="form-control" cols="30"
+                                                            rows="10">Bank Name: Allied Bank
+Account Number: ALIB100270589600
+Branch Name: #
+Country: Pak</textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-2 control-label"></label>
+                                                    <div class="col-sm-6">
+                                                        <button type="submit" class="btn btn-success pull-left"
+                                                            name="form9">Update</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+
+                                <div class="tab-pane" id="tab_10">
+                                    <form class="form-horizontal" action="" method="post">
+                                        <div class="box box-info">
+                                            <div class="box-body">
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-2 control-label">Code before
+                                                        &lt;/head&gt; tag </label>
+                                                    <div class="col-sm-8">
+                                                        <textarea name="before_head" class="form-control" cols="30"
+                                                            rows="10"></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-2 control-label">Code after &lt;body&gt;
+                                                        tag </label>
+                                                    <div class="col-sm-8">
+                                                        <textarea name="after_body" class="form-control" cols="30"
+                                                            rows="10"><div id="fb-root"></div>
+<script>(function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.10&appId=323620764400430";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-2 control-label">Code before
+                                                        &lt;/body&gt; tag </label>
+                                                    <div class="col-sm-8">
+                                                        <textarea name="before_body" class="form-control" cols="30"
+                                                            rows="10"><!--Start of Tawk.to Script-->
+<script type="text/javascript">
+    var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+    (function () {
+        var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+        s1.async = true;
+        s1.src = 'https://embed.tawk.to/5ae370d7227d3d7edc24cb96/default';
+        s1.charset = 'UTF-8';
+        s1.setAttribute('crossorigin', '*');
+        s0.parentNode.insertBefore(s1, s0);
+    })();
+</script>
+<!--End of Tawk.to Script--></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-2 control-label"></label>
+                                                    <div class="col-sm-6">
+                                                        <button type="submit" class="btn btn-success pull-left"
+                                                            name="form10">Update</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+
+                                <!--
+                        <div class="tab-pane" id="tab_11">
+                            <h3>Advertisements On and Off</h3>
+                            <form class="form-horizontal" action="" method="post">
+                            <div class="box box-info">
+                                <div class="box-body">
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-3 control-label">Above Welcome </label>
+                                        <div class="col-sm-4">
+                                            <select name="ads_above_welcome_on_off" class="form-control" style="width:auto;">
+                                            	<option value="1" <br />
+<b>Notice</b>:  Undefined variable: ads_above_welcome_on_off in <b>C:\xampp\htdocs\tilesmarble\tilesmarble\admin\settings.php</b> on line <b>1720</b><br />
+>On</option>
+                                            	<option value="0" <br />
+<b>Notice</b>:  Undefined variable: ads_above_welcome_on_off in <b>C:\xampp\htdocs\tilesmarble\tilesmarble\admin\settings.php</b> on line <b>1721</b><br />
+selected>Off</option>
+                                            </select>
+                                        </div>
+                                    </div>      
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-3 control-label">Above Featured Product </label>
+                                        <div class="col-sm-4">
+                                            <select name="ads_above_featured_product_on_off" class="form-control" style="width:auto;">
+                                            	<option value="1" <br />
+<b>Notice</b>:  Undefined variable: ads_above_featured_product_on_off in <b>C:\xampp\htdocs\tilesmarble\tilesmarble\admin\settings.php</b> on line <b>1729</b><br />
+>On</option>
+                                            	<option value="0" <br />
+<b>Notice</b>:  Undefined variable: ads_above_featured_product_on_off in <b>C:\xampp\htdocs\tilesmarble\tilesmarble\admin\settings.php</b> on line <b>1730</b><br />
+selected>Off</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-3 control-label">Above Latest Product </label>
+                                        <div class="col-sm-4">
+                                            <select name="ads_above_latest_product_on_off" class="form-control" style="width:auto;">
+                                            	<option value="1" <br />
+<b>Notice</b>:  Undefined variable: ads_above_latest_product_on_off in <b>C:\xampp\htdocs\tilesmarble\tilesmarble\admin\settings.php</b> on line <b>1738</b><br />
+>On</option>
+                                            	<option value="0" <br />
+<b>Notice</b>:  Undefined variable: ads_above_latest_product_on_off in <b>C:\xampp\htdocs\tilesmarble\tilesmarble\admin\settings.php</b> on line <b>1739</b><br />
+selected>Off</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-3 control-label">Above Popular Product </label>
+                                        <div class="col-sm-4">
+                                            <select name="ads_above_popular_product_on_off" class="form-control" style="width:auto;">
+                                            	<option value="1" <br />
+<b>Notice</b>:  Undefined variable: ads_above_popular_product_on_off in <b>C:\xampp\htdocs\tilesmarble\tilesmarble\admin\settings.php</b> on line <b>1747</b><br />
+>On</option>
+                                            	<option value="0" <br />
+<b>Notice</b>:  Undefined variable: ads_above_popular_product_on_off in <b>C:\xampp\htdocs\tilesmarble\tilesmarble\admin\settings.php</b> on line <b>1748</b><br />
+selected>Off</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-3 control-label">Above Testimonial </label>
+                                        <div class="col-sm-4">
+                                            <select name="ads_above_testimonial_on_off" class="form-control" style="width:auto;">
+                                            	<option value="1" <br />
+<b>Notice</b>:  Undefined variable: ads_above_testimonial_on_off in <b>C:\xampp\htdocs\tilesmarble\tilesmarble\admin\settings.php</b> on line <b>1756</b><br />
+>On</option>
+                                            	<option value="0" <br />
+<b>Notice</b>:  Undefined variable: ads_above_testimonial_on_off in <b>C:\xampp\htdocs\tilesmarble\tilesmarble\admin\settings.php</b> on line <b>1757</b><br />
+selected>Off</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-3 control-label">Category Page Sidebar </label>
+                                        <div class="col-sm-4">
+                                            <select name="ads_category_sidebar_on_off" class="form-control" style="width:auto;">
+                                            	<option value="1" <br />
+<b>Notice</b>:  Undefined variable: ads_category_sidebar_on_off in <b>C:\xampp\htdocs\tilesmarble\tilesmarble\admin\settings.php</b> on line <b>1765</b><br />
+>On</option>
+                                            	<option value="0" <br />
+<b>Notice</b>:  Undefined variable: ads_category_sidebar_on_off in <b>C:\xampp\htdocs\tilesmarble\tilesmarble\admin\settings.php</b> on line <b>1766</b><br />
+selected>Off</option>
+                                            </select>
+                                        </div>
+                                    </div>                                    
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-3 control-label"></label>
+                                        <div class="col-sm-6">
+                                            <button type="submit" class="btn btn-success pull-left" name="form11">Update</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </form>
+                        </div>
+
+-->
+
+                            </div>
+                        </div>
+
+
+
+                        </form>
+                    </div>
+                </div>
+
+            </section>
+
+        </div>
+
+    </div>
+    <script>
+        $(document).ready(function () {
+            $('#editor1').summernote({
+                height: 300
+            });
+            $('#editor2').summernote({
+                height: 300
+            });
+            $('#editor3').summernote({
+                height: 300
+            });
+            $('#editor4').summernote({
+                height: 300
+            });
+            $('#editor5').summernote({
+                height: 300
+            });
+        });
+        $(".top-cat").on('change', function () {
+            var id = $(this).val();
+            var dataString = 'id=' + id;
+            $.ajax
+                ({
+                    type: "POST",
+                    url: "get-mid-category.php",
+                    data: dataString,
+                    cache: false,
+                    success: function (html) {
+                        $(".mid-cat").html(html);
+                    }
+                });
+        });
+        $(".mid-cat").on('change', function () {
+            var id = $(this).val();
+            var dataString = 'id=' + id;
+            $.ajax
+                ({
+                    type: "POST",
+                    url: "get-end-category.php",
+                    data: dataString,
+                    cache: false,
+                    success: function (html) {
+                        $(".end-cat").html(html);
+                    }
+                });
+        });
+    </script>
+
+    <script>
+        $(function () {
+
+            //Initialize Select2 Elements
+            $(".select2").select2();
+
+            //Datemask dd/mm/yyyy
+            $("#datemask").inputmask("dd-mm-yyyy", { "placeholder": "dd-mm-yyyy" });
+            //Datemask2 mm/dd/yyyy
+            $("#datemask2").inputmask("mm-dd-yyyy", { "placeholder": "mm-dd-yyyy" });
+            //Money Euro
+            $("[data-mask]").inputmask();
+
+            //Date picker
+            $('#datepicker').datepicker({
+                autoclose: true,
+                format: 'dd-mm-yyyy',
+                todayBtn: 'linked',
+            });
+
+            $('#datepicker1').datepicker({
+                autoclose: true,
+                format: 'dd-mm-yyyy',
+                todayBtn: 'linked',
+            });
+
+            //iCheck for checkbox and radio inputs
+            $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+                checkboxClass: 'icheckbox_minimal-blue',
+                radioClass: 'iradio_minimal-blue'
+            });
+            //Red color scheme for iCheck
+            $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
+                checkboxClass: 'icheckbox_minimal-red',
+                radioClass: 'iradio_minimal-red'
+            });
+            //Flat red color scheme for iCheck
+            $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+                checkboxClass: 'icheckbox_flat-green',
+                radioClass: 'iradio_flat-green'
+            });
+
+
+
+            $("#example1").DataTable();
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false
+            });
+
+            $('#confirm-delete').on('show.bs.modal', function (e) {
+                $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+            });
+
+            $('#confirm-approve').on('show.bs.modal', function (e) {
+                $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+            });
+
+        });
+
+        function confirmDelete() {
+            return confirm("Are you sure want to delete this data?");
+        }
+        function confirmActive() {
+            return confirm("Are you sure want to Active?");
+        }
+        function confirmInactive() {
+            return confirm("Are you sure want to Inactive?");
+        }
+
+    </script>
+
+    <script type="text/javascript">
+        function showDiv(elem) {
+            if (elem.value == 0) {
+                document.getElementById('photo_div').style.display = "none";
+                document.getElementById('icon_div').style.display = "none";
+            }
+            if (elem.value == 1) {
+                document.getElementById('photo_div').style.display = "block";
+                document.getElementById('photo_div_existing').style.display = "block";
+                document.getElementById('icon_div').style.display = "none";
+            }
+            if (elem.value == 2) {
+                document.getElementById('photo_div').style.display = "none";
+                document.getElementById('photo_div_existing').style.display = "none";
+                document.getElementById('icon_div').style.display = "block";
+            }
+        }
+        function showContentInputArea(elem) {
+            if (elem.value == 'Full Width Page Layout') {
+                document.getElementById('showPageContent').style.display = "block";
+            } else {
+                document.getElementById('showPageContent').style.display = "none";
+            }
+        }
+    </script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#btnAddNew").click(function () {
+
+                var rowNumber = $("#ProductTable tbody tr").length;
+
+                var trNew = "";
+
+                var addLink = "<div class=\"upload-btn" + rowNumber + "\"><input type=\"file\" name=\"photo[]\"  style=\"margin-bottom:5px;\"></div>";
+
+                var deleteRow = "<a href=\"javascript:void()\" class=\"Delete btn btn-danger btn-xs\">X</a>";
+
+                trNew = trNew + "<tr> ";
+
+                trNew += "<td>" + addLink + "</td>";
+                trNew += "<td style=\"width:28px;\">" + deleteRow + "</td>";
+
+                trNew = trNew + " </tr>";
+
+                $("#ProductTable tbody").append(trNew);
+
+            });
+
+            $('#ProductTable').delegate('a.Delete', 'click', function () {
+                $(this).parent().parent().fadeOut('slow').remove();
+                return false;
+            });
+
+        });
+
+
+
+        var items = [];
+        for (i = 1; i <= 24; i++) {
+            items[i] = document.getElementById("tabField" + i);
+        }
+
+        items[1].style.display = 'block';
+        items[2].style.display = 'block';
+        items[3].style.display = 'block';
+        items[4].style.display = 'none';
+
+        items[5].style.display = 'block';
+        items[6].style.display = 'block';
+        items[7].style.display = 'block';
+        items[8].style.display = 'none';
+
+        items[9].style.display = 'block';
+        items[10].style.display = 'block';
+        items[11].style.display = 'block';
+        items[12].style.display = 'none';
+
+        items[13].style.display = 'block';
+        items[14].style.display = 'block';
+        items[15].style.display = 'block';
+        items[16].style.display = 'none';
+
+        items[17].style.display = 'block';
+        items[18].style.display = 'block';
+        items[19].style.display = 'block';
+        items[20].style.display = 'none';
+
+        items[21].style.display = 'block';
+        items[22].style.display = 'block';
+        items[23].style.display = 'block';
+        items[24].style.display = 'none';
+
+        function funcTab1(elem) {
+            var txt = elem.value;
+            if (txt == 'Image Advertisement') {
+                items[1].style.display = 'block';
+                items[2].style.display = 'block';
+                items[3].style.display = 'block';
+                items[4].style.display = 'none';
+            }
+            if (txt == 'Adsense Code') {
+                items[1].style.display = 'none';
+                items[2].style.display = 'none';
+                items[3].style.display = 'none';
+                items[4].style.display = 'block';
+            }
+        };
+
+        function funcTab2(elem) {
+            var txt = elem.value;
+            if (txt == 'Image Advertisement') {
+                items[5].style.display = 'block';
+                items[6].style.display = 'block';
+                items[7].style.display = 'block';
+                items[8].style.display = 'none';
+            }
+            if (txt == 'Adsense Code') {
+                items[5].style.display = 'none';
+                items[6].style.display = 'none';
+                items[7].style.display = 'none';
+                items[8].style.display = 'block';
+            }
+        };
+
+        function funcTab3(elem) {
+            var txt = elem.value;
+            if (txt == 'Image Advertisement') {
+                items[9].style.display = 'block';
+                items[10].style.display = 'block';
+                items[11].style.display = 'block';
+                items[12].style.display = 'none';
+            }
+            if (txt == 'Adsense Code') {
+                items[9].style.display = 'none';
+                items[10].style.display = 'none';
+                items[11].style.display = 'none';
+                items[12].style.display = 'block';
+            }
+        };
+
+        function funcTab4(elem) {
+            var txt = elem.value;
+            if (txt == 'Image Advertisement') {
+                items[13].style.display = 'block';
+                items[14].style.display = 'block';
+                items[15].style.display = 'block';
+                items[16].style.display = 'none';
+            }
+            if (txt == 'Adsense Code') {
+                items[13].style.display = 'none';
+                items[14].style.display = 'none';
+                items[15].style.display = 'none';
+                items[16].style.display = 'block';
+            }
+        };
+
+        function funcTab5(elem) {
+            var txt = elem.value;
+            if (txt == 'Image Advertisement') {
+                items[17].style.display = 'block';
+                items[18].style.display = 'block';
+                items[19].style.display = 'block';
+                items[20].style.display = 'none';
+            }
+            if (txt == 'Adsense Code') {
+                items[17].style.display = 'none';
+                items[18].style.display = 'none';
+                items[19].style.display = 'none';
+                items[20].style.display = 'block';
+            }
+        };
+
+        function funcTab6(elem) {
+            var txt = elem.value;
+            if (txt == 'Image Advertisement') {
+                items[21].style.display = 'block';
+                items[22].style.display = 'block';
+                items[23].style.display = 'block';
+                items[24].style.display = 'none';
+            }
+            if (txt == 'Adsense Code') {
+                items[21].style.display = 'none';
+                items[22].style.display = 'none';
+                items[23].style.display = 'none';
+                items[24].style.display = 'block';
+            }
+        };
+
+
+
+
+    </script>
+
+{% endblock %}

@@ -1,0 +1,116 @@
+{% extends 'basic/basic.html' %}
+
+{% load static %}
+
+{% block content %}
+
+    {% include 'basic/top_navbar.html' %}
+
+    {% include 'basic/center_navbar.html' %}
+
+    {% include 'basic/main_navbar.html' %}
+
+
+    <div class="page-banner"
+        style="background-color:#444;background-image: url(assets/uploads/banner_registration.jpg);">
+        <div class="inner">
+            <h1>Customer Registration</h1>
+        </div>
+    </div>
+    {% if form.password.errors %}
+    {% for error in form.password.errors %}
+        <div class="alert alert-danger">{{ error }}</div>
+    {% endfor %}
+{% endif %}
+
+{% if form.confirm_password.errors %}
+    {% for error in form.confirm_password.errors %}
+        <div class="alert alert-danger">{{ error }}</div>
+    {% endfor %}
+{% endif %}
+    <div class="container text-center" style="width: 50%; padding: 5px;">
+        {% for field in form %}
+  {% for error in field.errors %}
+    <div class="invalid-feedback text-center bg-danger" style="padding: 5px; font-weight: bold;">{{ error }}</div>
+  {% endfor %}
+{% endfor %}
+    </div>
+    <div class="page">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="user-content">
+                        <form action="" method="post" id="registration_form">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-2">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="col-md-6 form-group">
+                                        <label for="">Full Name *</label>
+                                        {{form.full_name}}
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <label for="">Email Address *</label>
+                                        {{form.email}}
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <label for="">City *</label>
+                                        {{form.city}}
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <label for="">Phone Number *</label>
+                                        {{form.phone_no}}
+                                    </div>
+                                    <div class="col-md-12 form-group">
+                                        <label for="">Address *</label>
+                                        {{form.address}}
+                                    </div>
+                                    <div class="col-md-12 form-group">
+                                        <label for="">Country *</label>
+                                        {{form.country}}
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <label for="">Password *</label>
+                                        {{form.password}}
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <label for="">Retype Password *</label>
+                                        {{form.confirm_password}}
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <label for=""></label>
+                                        <input type="submit" class="btn btn-danger" value="Register" name="form1">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+    $('#registration_form').submit(function(event) {
+        event.preventDefault();
+        var cust_email = $('#cust_email').val();
+        if (cust_email == "") {
+            $('#email_error').text('Email is required');
+            return false;
+        }
+        else {
+            $('#email_error').text('');
+        }
+        // perform other form data validation here
+        // if all form data is valid, submit the form using AJAX
+        // ...
+    });
+});
+
+    </script>
+
+    {% include 'basic/footer.html' %}
+
+    {% endblock %}

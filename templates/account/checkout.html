@@ -1,0 +1,296 @@
+{% extends 'basic/basic.html' %}
+
+{% load static %}
+
+{% block content %}
+
+{% include 'basic/top_navbar.html' %}
+
+{% include 'basic/center_navbar.html' %}
+
+{% include 'basic/main_navbar.html' %}
+
+
+	<div class="page-banner" style="background-image: url(assets/uploads/banner_checkout.jpg)">
+		<div class="overlay"></div>
+		<div class="page-banner-inner">
+			<h1>Checkout</h1>
+		</div>
+	</div>
+
+	<div class="page">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+
+
+					<h3 class="special">Order Details</h3>
+					<div class="table-responsive">
+						<table class="table table-bordered table-striped table-hover">
+							<tr>
+								<th>#</th>
+								<th>Photo</th>
+								<th>Product Name</th>
+								<th>Size</th>
+								<th>Color</th>
+								<th>Price</th>
+								<th>Quantity</th>
+								<th class="text-right">Total</th>
+							</tr>
+							<tr>
+								<td>{{forloop.counter}}
+									<input type="hidden" value={{i.product}}>
+								</td>
+								<td>
+									<img src="{{get_user_products.product.featured_photo.url}}" height="100px" alt="">
+								</td>
+								<td>{{get_user_products.product.product_name}}</td>
+								<td>{{get_user_products.size}}</td>
+								<td>{{get_user_products.color}}</td>
+								<td>sq.ft-{{get_user_products.price}}</td>
+								<td>{{get_user_products.quantity}}</td>
+								<td class="text-right">
+									sq.ft-{{get_user_products.total}} </td>
+							</tr>
+							<tr>
+								<th colspan="7" class="total-text">Total</th>
+								<th class="total-amount">
+									sq.ft-{{total_price}} </th>
+							</tr>
+						</table>
+					</div>
+
+					<div class="billing-address">
+						<div class="row">
+							<div class="col-md-6">
+								<h3 class="special">Billing Address</h3>
+								<table
+									class="table table-responsive table-bordered table-hover table-striped bill-address">
+									<tr>
+										<td>Full Name</td>
+										<td>{{get_user.full_name}}</p>
+										</td>
+									</tr>
+									<!-- <tr>
+										<td>Company Name</td>
+										<td>{{get_user.company_name}}</td>
+									</tr> -->
+									<tr>
+										<td>Phone Number</td>
+										<td>{{get_user.phone_no}}</td>
+									</tr>
+									<tr>
+										<td>Country</td>
+										<td>{{get_user.country}}</td>
+									</tr>
+									<tr>
+										<td>Address</td>
+										<td>{{get_user.address}}</td>
+									</tr>
+									<tr>
+										<td>City</td>
+										<td>{{get_user.city}}</td>
+									</tr>
+									<!-- <tr>
+										<td>State</td>
+										<td>{{get_user.state}}</td>
+									</tr>
+									<tr>
+										<td>Zip Code</td>
+										<td>{{get_user.zip_code}}</td>
+									</tr> -->
+								</table>
+							</div>
+							<div class="col-md-6">
+								<h3 class="special">Shipping Address</h3>
+								<table
+									class="table table-responsive table-bordered table-hover table-striped bill-address">
+									<tr>
+										<td>Full Name</td>
+										<td>{{get_user.full_name}}</p>
+										</td>
+									</tr>
+									<!-- <tr>
+										<td>Company Name</td>
+										<td>{{get_user.company_name}}</td>
+									</tr>
+									<tr> -->
+										<td>Phone Number</td>
+										<td>{{get_user.phone_no}}</td>
+									</tr>
+									<tr>
+										<td>Country</td>
+										<td>{{get_user.country}}</td>
+									</tr>
+									<tr>
+										<td>Address</td>
+										<td>{{get_user.address}}</td>
+									</tr>
+									<tr>
+										<td>City</td>
+										<td>{{get_user.city}}</td>
+									</tr>
+									<!-- <tr>
+										<td>State</td>
+										<td>{{get_user.state}}</td>
+									</tr>
+									<tr>
+										<td>Zip Code</td>
+										<td>{{get_user.zip_code}}</td>
+									</tr> -->
+								</table>
+							</div>
+						</div>
+					</div>
+					<form action="{% url 'order_product' get_user_products.id %}">
+					<h3 style="text-align: center;">Payment Method : <span style="color: green;">Cash on Delivery</span></h3>
+					<hr/>
+					<h4>Select Delivery Type :</h4>
+					<hr/>
+					<label for="standard-delivery">
+						<input type="radio" id="standard-delivery" name="delivery-type" value="standard" onclick="showStandardDeliveryCharges()" checked>
+						Standard Delivery
+					  </label>
+					  
+					  <label for="express-delivery">
+						<input type="radio" id="express-delivery" name="delivery-type" value="express" onclick="showExpressDeliveryCharges()">
+						Express Delivery
+					  </label>
+					  
+					  <div id="standard-delivery-charges" class="delivery-charges" style="color: red;">
+						Standard Delivery Charges: 200.00
+					  </div>
+					  
+					  <div id="express-delivery-charges" class="delivery-charges" style="display:none; color: red;">
+						Express Delivery Charges: 300.00
+					  </div>
+					  
+					  <script>
+						function showStandardDeliveryCharges() {
+						  var chargesDiv = document.getElementById("standard-delivery-charges");
+						  chargesDiv.style.display = "block";
+						  var expressDiv = document.getElementById("express-delivery-charges");
+						  expressDiv.style.display = "none";
+						}
+					  
+						function showExpressDeliveryCharges() {
+						  var chargesDiv = document.getElementById("express-delivery-charges");
+						  chargesDiv.style.display = "block";
+						  var standardDiv = document.getElementById("standard-delivery-charges");
+						  standardDiv.style.display = "none";
+						}
+					  </script>
+					  
+					<div class="cart-buttons">
+						<ul>
+							<li><a href="{% url 'cart' %}" class="btn btn-primary">Back to cart</a></li>
+							<li>
+								<button type="submit" class="">
+									<a class="btn btn-primary">Place Order</a></li>
+								</button>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	{% include 'basic/footer.html' %}
+
+
+	<a href="#" class="scrollup">
+		<i class="fa fa-angle-up"></i>
+	</a>
+
+
+	<script src="assets/js/jquery-2.2.4.min.js"></script>
+	<script src="assets/js/bootstrap.min.js"></script>
+	<script src="https://js.stripe.com/v2/"></script>
+	<script src="assets/js/megamenu.js"></script>
+	<script src="assets/js/owl.carousel.min.js"></script>
+	<script src="assets/js/owl.animate.js"></script>
+	<script src="assets/js/jquery.bxslider.min.js"></script>
+	<script src="assets/js/jquery.magnific-popup.min.js"></script>
+	<script src="assets/js/rating.js"></script>
+	<script src="assets/js/jquery.touchSwipe.min.js"></script>
+	<script src="assets/js/bootstrap-touch-slider.js"></script>
+	<script src="assets/js/select2.full.min.js"></script>
+	<script src="assets/js/custom.js"></script>
+	<script>
+		function confirmDelete() {
+			return confirm("Sure you want to delete this data?");
+		}
+		$(document).ready(function () {
+			advFieldsStatus = $('#advFieldsStatus').val();
+
+			$('#paypal_form').hide();
+			$('#stripe_form').hide();
+			$('#bank_form').hide();
+
+			$('#advFieldsStatus').on('change', function () {
+				advFieldsStatus = $('#advFieldsStatus').val();
+				if (advFieldsStatus == '') {
+					$('#paypal_form').hide();
+					$('#stripe_form').hide();
+					$('#bank_form').hide();
+				} else if (advFieldsStatus == 'PayPal') {
+					$('#paypal_form').show();
+					$('#stripe_form').hide();
+					$('#bank_form').hide();
+				} else if (advFieldsStatus == 'Stripe') {
+					$('#paypal_form').hide();
+					$('#stripe_form').show();
+					$('#bank_form').hide();
+				} else if (advFieldsStatus == 'Bank Deposit') {
+					$('#paypal_form').hide();
+					$('#stripe_form').hide();
+					$('#bank_form').show();
+				}
+			});
+		});
+
+
+		$(document).on('submit', '#stripe_form', function () {
+			// createToken returns immediately - the supplied callback submits the form if there are no errors
+			$('#submit-button').prop("disabled", true);
+			$("#msg-container").hide();
+			Stripe.card.createToken({
+				number: $('.card-number').val(),
+				cvc: $('.card-cvc').val(),
+				exp_month: $('.card-expiry-month').val(),
+				exp_year: $('.card-expiry-year').val()
+				// name: $('.card-holder-name').val()
+			}, stripeResponseHandler);
+			return false;
+		});
+		Stripe.setPublishableKey('pk_test_0SwMWadgu8DwmEcPdUPRsZ7b');
+		function stripeResponseHandler(status, response) {
+			if (response.error) {
+				$('#submit-button').prop("disabled", false);
+				$("#msg-container").html('<div style="color: red;border: 1px solid;margin: 10px 0px;padding: 5px;"><strong>Error:</strong> ' + response.error.message + '</div>');
+				$("#msg-container").show();
+			} else {
+				var form$ = $("#stripe_form");
+				var token = response['id'];
+				form$.append("<input type='hidden' name='stripeToken' value='" + token + "' />");
+				form$.get(0).submit();
+			}
+		}
+	</script>
+	<!--Start of Tawk.to Script-->
+	<script type="text/javascript">
+		var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+		(function () {
+			var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+			s1.async = true;
+			s1.src = 'https://embed.tawk.to/5ae370d7227d3d7edc24cb96/default';
+			s1.charset = 'UTF-8';
+			s1.setAttribute('crossorigin', '*');
+			s0.parentNode.insertBefore(s1, s0);
+		})();
+	</script>
+	<!--End of Tawk.to Script-->
+
+	{% endblock %}

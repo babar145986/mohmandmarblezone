@@ -1,0 +1,90 @@
+{% extends 'basic/basic.html' %}
+
+{% load static %}
+
+{% block content %}
+
+    {% include 'basic/top_navbar.html' %}
+
+    {% include 'basic/center_navbar.html' %}
+
+    {% include 'basic/main_navbar.html' %}
+
+	<div class="page-banner" style="background-image: url({% static 'assets/uploads/contact-banner.jpg' %});">
+		<div class="inner">
+			<h1>Contact Us</h1>
+		</div>
+	</div>
+	<div class="page">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					{% include 'basic/messages.html' %}
+					<div class="row cform">
+						<div class="col-md-8">
+							<div class="well well-sm">
+								<form action="{% url 'user_contact' %}" method="post">
+									{% csrf_token %}
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="name">Name</label>
+												<input type="text" class="form-control" name="visitor_name"
+													placeholder="Enter name" value="{{request.user.full_name}}">
+											</div>
+											<div class="form-group">
+												<label for="email">Email Address</label>
+												<input type="email" class="form-control" name="visitor_email"
+													placeholder="Enter email address" value="{{request.user.email}}">
+											</div>
+											<div class="form-group">
+												<label for="email">Phone Number</label>
+												<input type="text" class="form-control" name="visitor_phone"
+													placeholder="Enter phone number" value="{{request.user.phone_no}}">
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="name">Message</label>
+												<textarea required name="visitor_message" class="form-control" rows="9" cols="25"
+													placeholder="Enter message"></textarea>
+											</div>
+										</div>
+										<div class="col-md-12">
+											<input type="submit" value="Send Message" class="btn btn-primary pull-right"
+												name="form_contact">
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<legend><span class="glyphicon glyphicon-globe"></span> Our office</legend>
+							<address>
+							{{get_footer_contact.contact_address}}
+							</address>
+							<address>
+								<strong>Phone:</strong><br>
+								<span>{{get_footer_contact.contact_no}}</span>
+							</address>
+							<address>
+								<strong>Email:</strong><br>
+								<a href="mailto:umargul6852@gmail.com"><span>
+									{{get_footer_contact.contact_email}}
+								</span></a>
+							</address>
+						</div>
+					</div>
+
+					<h3>Find Us On Map</h3>
+					<iframe
+						src="{{get_footer_contact.map_iframe}}"
+						width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	{% include 'basic/footer.html' %}
+
+    {% endblock %}

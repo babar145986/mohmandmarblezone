@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Admin Panel</title>
+
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/ionicons.min.css">
+    <link rel="stylesheet" href="css/datepicker3.css">
+    <link rel="stylesheet" href="css/all.css">
+    <link rel="stylesheet" href="css/select2.min.css">
+    <link rel="stylesheet" href="css/dataTables.bootstrap.css">
+    <link rel="stylesheet" href="css/jquery.fancybox.css">
+    <link rel="stylesheet" href="css/AdminLTE.min.css">
+    <link rel="stylesheet" href="css/_all-skins.min.css">
+    <link rel="stylesheet" href="css/on-off-switch.css" />
+    <link rel="stylesheet" href="css/summernote.css">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body class="hold-transition fixed skin-blue sidebar-mini">
+
+    <div class="wrapper">
+
+        <header class="main-header">
+
+            <a href="index.php" class="logo">
+                <span class="logo-lg">Tiles and Marbles </span>
+            </a>
+
+            <nav class="navbar navbar-static-top">
+
+                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                </a>
+
+                <span style="float:left;line-height:50px;color:#fff;padding-left:15px;font-size:18px;">Admin
+                    Panel</span>
+                <!-- Top Bar ... User Inforamtion .. Login/Log out Area -->
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown user user-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <img src="../assets/uploads/user-1.png" class="user-image" alt="User Image">
+                                <span class="hidden-xs">Administrator</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="user-footer">
+                                    <div>
+                                        <a href="profile-edit.php" class="btn btn-default btn-flat">Edit Profile</a>
+                                    </div>
+                                    <div>
+                                        <a href="logout.php" class="btn btn-default btn-flat">Log out</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+            </nav>
+        </header>
+
+        <!-- Side Bar to Manage Shop Activities -->
+        <aside class="main-sidebar">
+            <section class="sidebar">
+
+                <ul class="sidebar-menu">
+
+                    <li class="treeview ">
+                        <a href="index.php">
+                            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                        </a>
+                    </li>
+
+
+                    <li class="treeview ">
+                        <a href="settings.php">
+                            <i class="fa fa-sliders"></i> <span>Website Settings</span>
+                        </a>
+                    </li>
+
+                    <li class="treeview ">
+                        <a href="#">
+                            <i class="fa fa-cogs"></i>
+                            <span>Shop Settings</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="size.php"><i class="fa fa-circle-o"></i> Size</a></li>
+                            <li><a href="color.php"><i class="fa fa-circle-o"></i> Color</a></li>
+                            <li><a href="country.php"><i class="fa fa-circle-o"></i> Country</a></li>
+                            <li><a href="shipping-cost.php"><i class="fa fa-circle-o"></i> Shipping Cost</a></li>
+                            <li><a href="top-category.php"><i class="fa fa-circle-o"></i> Top Level Category</a></li>
+                            <li><a href="mid-category.php"><i class="fa fa-circle-o"></i> Mid Level Category</a></li>
+                            <li><a href="end-category.php"><i class="fa fa-circle-o"></i> End Level Category</a></li>
+                        </ul>
+                    </li>
+
+
+                    <li class="treeview ">
+                        <a href="product.php">
+                            <i class="fa fa-shopping-bag"></i> <span>Tiles & Marbles Management</span>
+                        </a>
+                    </li>
+
+
+                    <li class="treeview ">
+                        <a href="order.php">
+                            <i class="fa fa-sticky-note"></i> <span>Order Management</span>
+                        </a>
+                    </li>
+
+
+                    <li class="treeview ">
+                        <a href="slider.php">
+                            <i class="fa fa-picture-o"></i> <span>Manage Sliders</span>
+                        </a>
+                    </li>
+                    <!-- Icons to be displayed on Shop -->
+                    <li class="treeview ">
+                        <a href="service.php">
+                            <i class="fa fa-list-ol"></i> <span>Services</span>
+                        </a>
+                    </li>
+
+                    <li class="treeview ">
+                        <a href="faq.php">
+                            <i class="fa fa-question-circle"></i> <span>FAQ</span>
+                        </a>
+                    </li>
+
+                    <li class="treeview ">
+                        <a href="customer.php">
+                            <i class="fa fa-user-plus"></i> <span>Registered Customer</span>
+                        </a>
+                    </li>
+
+                    <li class="treeview active">
+                        <a href="page.php">
+                            <i class="fa fa-tasks"></i> <span>Page Settings</span>
+                        </a>
+                    </li>
+
+                    <li class="treeview ">
+                        <a href="social-media.php">
+                            <i class="fa fa-globe"></i> <span>Social Media</span>
+                        </a>
+                    </li>
+
+                    <li class="treeview ">
+                        <a href="subscriber.php">
+                            <i class="fa fa-hand-o-right"></i> <span>Subscriber</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </section>
+        </aside>
+
+        <div class="content-wrapper">
+
+            <section class="content-header">
+                <div class="content-header-left">
+                    <h1>Page Settings</h1>
+                </div>
+            </section>
+
+
+
+            <section class="content" style="min-height:auto;margin-bottom: -30px;">
+                <div class="row">
+                    <div class="col-md-12">
+
+                    </div>
+                </div>
+            </section>
+
+            <section class="content">
+
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <div class="nav-tabs-custom">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#tab_1" data-toggle="tab">About Us</a></li>
+                                <li><a href="#tab_2" data-toggle="tab">FAQ</a></li>
+                                <li><a href="#tab_4" data-toggle="tab">Contact</a></li>
+
+                            </ul>
+
+                            <!-- About us Page Content -->
+
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="tab_1">
+                                    <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+                                        <div class="box box-info">
+                                            <div class="box-body">
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-3 control-label">Page Title * </label>
+                                                    <div class="col-sm-5">
+                                                        <input class="form-control" type="text" name="about_title"
+                                                            value="About Us">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-3 control-label">Page Content * </label>
+                                                    <div class="col-sm-8">
+                                                        <textarea class="form-control" name="about_content"
+                                                            id="editor1"><h3 style="border: 0px solid; margin-top: 1.5rem; margin-bottom: 0px;">Welcome to Tiles &amp; Marbles Management System</h3><p style="border: 0px solid; margin-top: 1.5rem; margin-bottom: 0px;"><br></p><p style="margin-bottom: 15px; color: rgb(83, 83, 83); font-family: Raleway, sans-serif; font-size: 14px;">All Marble Tiles&nbsp;is a direct importer of Tiles, Mosaics, Slabs, Marble, porcelain, and Travertine products for bathrooms, kitchens, etc... All Marble Tiles is a Khyber Pakhtunkhuwa based company with a Warehouse and showroom located in Peshawar, Shabqadar Fort.&nbsp;</p><p style="margin-bottom: 15px; color: rgb(83, 83, 83); font-family: Raleway, sans-serif; font-size: 14px;">High quality marble tiles and mosaics such as Bianco Dolomite, Botticino, Calacatta, Crema Marfil, Italian Bianco Carrara, Arabescato, Thassos, Tundra Gray, Dark Emperador, Diana Royal, Azul Celeste, Equator and many more.</p><p style="margin-bottom: 15px; color: rgb(83, 83, 83); font-family: Raleway, sans-serif; font-size: 14px;">Creating a bathroom that is aesthetically pleasing is all related to the finish of the tile you choose to install. As a company we pride ourselves as one of the few bathroom tile companies in New Jersey offering the best flooring solutions for all your home renovation projects. We offer a wide range of great quality bathroom decor to fit all of your personal tastes and preferences. One unique quality you will identify with us is the ability to offer a wide variety of high quality material that you can't find anywhere else.&nbsp;</p><p style="margin-bottom: 15px; color: rgb(83, 83, 83); font-family: Raleway, sans-serif; font-size: 14px;">Our wide marble collection is a great choice in creating a beautiful serene looking space. Marble is a wonderful option that we recommend to our clients as marble flawlessly blends with your floor creating an attractive high end appearance.&nbsp;</p><p style="margin-bottom: 15px; color: rgb(83, 83, 83); font-family: Raleway, sans-serif; font-size: 14px;">Besides marble we also offer a variety of options such as glass tiles, borders, travertine tiles, porcelain, and mosaics. We leave it to the customer to choose the material they prefer and we are also happy to help and assess your home and give a couple of tips on which floor tile will suit it best.&nbsp;</p><p style="margin-bottom: 15px; color: rgb(83, 83, 83); font-family: Raleway, sans-serif; font-size: 14px;">&nbsp;</p><p style="margin-bottom: 15px; color: rgb(83, 83, 83); font-family: Raleway, sans-serif; font-size: 14px;">Our Travertine tiles are a perfect choice for those who want to create a natural look in their bathroom. Travertine does not glitter like marble which makes it ideal when you want a toned down and neat look.&nbsp;</p><p style="margin-bottom: 15px; color: rgb(83, 83, 83); font-family: Raleway, sans-serif; font-size: 14px;">Porcelain tiles have been around for a while and as a bathroom tile company, we believe we have some of the best porcelain tile options in Shabqadar. We provide tough and natural looking tiles that will neatly carpet every square inch of the bathing area. If you want something different from porcelain, you can never go wrong with glass tiles; especially when looking for a unique look for your bathing area.&nbsp;</p><p style="margin-bottom: 15px; color: rgb(83, 83, 83); font-family: Raleway, sans-serif; font-size: 14px;">We can deliver the tiles right to your doorstep if you are a resident of Shabqadar. Once you make your purchases, we will organize the best transport for your tiles and ship them out in 1-3 days.&nbsp;</p><p style="">We make sure you get the best quality outfits with hassle free returns and exchanges policy. We ensure what you see is exactly what you get!</p><ul><li style="text-align: justify;"><font face="apercu, Arial, sans-serif"><span style="font-size: 14px;">Low Price Guarantee</span></font></li><li style="text-align: justify;"><font face="apercu, Arial, sans-serif"><span style="font-size: 14px;">24/7 Customer Support</span></font></li><li style="text-align: justify;"><font face="apercu, Arial, sans-serif"><span style="font-size: 14px;">E-Mail - Text - Call</span></font></li><li style="text-align: justify;"><font face="apercu, Arial, sans-serif"><span style="font-size: 14px;">We are here for you 24/7 online and via phone.</span></font></li><li style="text-align: justify;"><font face="apercu, Arial, sans-serif"><span style="font-size: 14px;">Sizing &amp; Color</span></font></li><li style="text-align: justify;"><font face="apercu, Arial, sans-serif"><span style="font-size: 14px;">Easy Returns</span></font></li></ul><p style="text-align: justify; "><br></p><p style="text-align: justify; "><font face="apercu, Arial, sans-serif"><span style="font-size: 14px;"><b>Tiles &amp; Marbles Management system</b></span></font></p><p style="text-align: justify; "><font face="apercu, Arial, sans-serif"><span style="font-size: 14px;"><b>Emails: tilesmarbles@gmail.com</b></span></font></p>
+</textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-3 control-label">Existing Banner
+                                                        Photo</label>
+                                                    <div class="col-sm-6" style="padding-top:6px;">
+                                                        <img src="../assets/uploads/about-banner.jpeg"
+                                                            class="existing-photo" style="height:80px;">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-3 control-label">New Banner
+                                                        Photo</label>
+                                                    <div class="col-sm-6" style="padding-top:6px;">
+                                                        <input type="file" name="about_banner">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-3 control-label">Meta Title</label>
+                                                    <div class="col-sm-8">
+                                                        <input class="form-control" type="text" name="about_meta_title"
+                                                            value="Tiles and Marbles - About Us">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-3 control-label">Meta Keyword </label>
+                                                    <div class="col-sm-8">
+                                                        <textarea class="form-control" name="about_meta_keyword"
+                                                            style="height:100px;">about, about us, about tiles, about marbles, about tiles marbles php project</textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-3 control-label">Meta Description
+                                                    </label>
+                                                    <div class="col-sm-8">
+                                                        <textarea class="form-control" name="about_meta_description"
+                                                            style="height:100px;">Marble Tiles are known for its quality, normal sparkle and nature of stone. These Tiles are truly magnificent to look at, they are beautiful</textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-3 control-label"></label>
+                                                    <div class="col-sm-6">
+                                                        <button type="submit" class="btn btn-success pull-left"
+                                                            name="form_about">Update</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <!-- FAQ Page Content -->
+
+                                <div class="tab-pane" id="tab_2">
+                                    <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+                                        <div class="box box-info">
+                                            <div class="box-body">
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-3 control-label">Page Title * </label>
+                                                    <div class="col-sm-5">
+                                                        <input class="form-control" type="text" name="faq_title"
+                                                            value="FAQ">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-3 control-label">Existing Banner
+                                                        Photo</label>
+                                                    <div class="col-sm-6" style="padding-top:6px;">
+                                                        <img src="../assets/uploads/faq-banner.jpeg"
+                                                            class="existing-photo" style="height:80px;">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-3 control-label">New Banner
+                                                        Photo</label>
+                                                    <div class="col-sm-6" style="padding-top:6px;">
+                                                        <input type="file" name="faq_banner">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-3 control-label">Meta Title</label>
+                                                    <div class="col-sm-8">
+                                                        <input class="form-control" type="text" name="faq_meta_title"
+                                                            value="Fashionys.com - FAQ">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-3 control-label">Meta Keyword </label>
+                                                    <div class="col-sm-8">
+                                                        <textarea class="form-control" name="faq_meta_keyword"
+                                                            style="height:100px;"></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-3 control-label">Meta Description
+                                                    </label>
+                                                    <div class="col-sm-8">
+                                                        <textarea class="form-control" name="faq_meta_description"
+                                                            style="height:100px;"></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-3 control-label"></label>
+                                                    <div class="col-sm-6">
+                                                        <button type="submit" class="btn btn-success pull-left"
+                                                            name="form_faq">Update</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <!-- End of FAQ Page Content -->
+
+                                <div class="tab-pane" id="tab_4">
+                                    <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+                                        <div class="box box-info">
+                                            <div class="box-body">
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-3 control-label">Page Title * </label>
+                                                    <div class="col-sm-5">
+                                                        <input class="form-control" type="text" name="contact_title"
+                                                            value="Contact Us">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-3 control-label">Existing Banner
+                                                        Photo</label>
+                                                    <div class="col-sm-6" style="padding-top:6px;">
+                                                        <img src="../assets/uploads/contact-banner.jpg"
+                                                            class="existing-photo" style="height:80px;">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-3 control-label">New Banner
+                                                        Photo</label>
+                                                    <div class="col-sm-6" style="padding-top:6px;">
+                                                        <input type="file" name="contact_banner">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-3 control-label">Meta Title</label>
+                                                    <div class="col-sm-8">
+                                                        <input class="form-control" type="text"
+                                                            name="contact_meta_title" value="Fashionys.com - Contact">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-3 control-label">Meta Keyword </label>
+                                                    <div class="col-sm-8">
+                                                        <textarea class="form-control" name="contact_meta_keyword"
+                                                            style="height:100px;"></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-3 control-label">Meta Description
+                                                    </label>
+                                                    <div class="col-sm-8">
+                                                        <textarea class="form-control" name="contact_meta_description"
+                                                            style="height:100px;"></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="" class="col-sm-3 control-label"></label>
+                                                    <div class="col-sm-6">
+                                                        <button type="submit" class="btn btn-success pull-left"
+                                                            name="form_contact">Update</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+
+
+
+
+                                </form>
+                            </div>
+                        </div>
+
+            </section>
+
+        </div>
+
+    </div>
+
+    <script src="js/jquery-2.2.4.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.dataTables.min.js"></script>
+    <script src="js/dataTables.bootstrap.min.js"></script>
+    <script src="js/select2.full.min.js"></script>
+    <script src="js/jquery.inputmask.js"></script>
+    <script src="js/jquery.inputmask.date.extensions.js"></script>
+    <script src="js/jquery.inputmask.extensions.js"></script>
+    <script src="js/moment.min.js"></script>
+    <script src="js/bootstrap-datepicker.js"></script>
+    <script src="js/icheck.min.js"></script>
+    <script src="js/fastclick.js"></script>
+    <script src="js/jquery.sparkline.min.js"></script>
+    <script src="js/jquery.slimscroll.min.js"></script>
+    <script src="js/jquery.fancybox.pack.js"></script>
+    <script src="js/app.min.js"></script>
+    <script src="js/jscolor.js"></script>
+    <script src="js/on-off-switch.js"></script>
+    <script src="js/on-off-switch-onload.js"></script>
+    <script src="js/clipboard.min.js"></script>
+    <script src="js/demo.js"></script>
+    <script src="js/summernote.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#editor1').summernote({
+                height: 300
+            });
+            $('#editor2').summernote({
+                height: 300
+            });
+            $('#editor3').summernote({
+                height: 300
+            });
+            $('#editor4').summernote({
+                height: 300
+            });
+            $('#editor5').summernote({
+                height: 300
+            });
+        });
+        $(".top-cat").on('change', function () {
+            var id = $(this).val();
+            var dataString = 'id=' + id;
+            $.ajax
+                ({
+                    type: "POST",
+                    url: "get-mid-category.php",
+                    data: dataString,
+                    cache: false,
+                    success: function (html) {
+                        $(".mid-cat").html(html);
+                    }
+                });
+        });
+        $(".mid-cat").on('change', function () {
+            var id = $(this).val();
+            var dataString = 'id=' + id;
+            $.ajax
+                ({
+                    type: "POST",
+                    url: "get-end-category.php",
+                    data: dataString,
+                    cache: false,
+                    success: function (html) {
+                        $(".end-cat").html(html);
+                    }
+                });
+        });
+    </script>
+
+    <script>
+        $(function () {
+
+            //Initialize Select2 Elements
+            $(".select2").select2();
+
+            //Datemask dd/mm/yyyy
+            $("#datemask").inputmask("dd-mm-yyyy", { "placeholder": "dd-mm-yyyy" });
+            //Datemask2 mm/dd/yyyy
+            $("#datemask2").inputmask("mm-dd-yyyy", { "placeholder": "mm-dd-yyyy" });
+            //Money Euro
+            $("[data-mask]").inputmask();
+
+            //Date picker
+            $('#datepicker').datepicker({
+                autoclose: true,
+                format: 'dd-mm-yyyy',
+                todayBtn: 'linked',
+            });
+
+            $('#datepicker1').datepicker({
+                autoclose: true,
+                format: 'dd-mm-yyyy',
+                todayBtn: 'linked',
+            });
+
+            //iCheck for checkbox and radio inputs
+            $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+                checkboxClass: 'icheckbox_minimal-blue',
+                radioClass: 'iradio_minimal-blue'
+            });
+            //Red color scheme for iCheck
+            $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
+                checkboxClass: 'icheckbox_minimal-red',
+                radioClass: 'iradio_minimal-red'
+            });
+            //Flat red color scheme for iCheck
+            $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+                checkboxClass: 'icheckbox_flat-green',
+                radioClass: 'iradio_flat-green'
+            });
+
+
+
+            $("#example1").DataTable();
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false
+            });
+
+            $('#confirm-delete').on('show.bs.modal', function (e) {
+                $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+            });
+
+            $('#confirm-approve').on('show.bs.modal', function (e) {
+                $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+            });
+
+        });
+
+        function confirmDelete() {
+            return confirm("Are you sure want to delete this data?");
+        }
+        function confirmActive() {
+            return confirm("Are you sure want to Active?");
+        }
+        function confirmInactive() {
+            return confirm("Are you sure want to Inactive?");
+        }
+
+    </script>
+
+    <script type="text/javascript">
+        function showDiv(elem) {
+            if (elem.value == 0) {
+                document.getElementById('photo_div').style.display = "none";
+                document.getElementById('icon_div').style.display = "none";
+            }
+            if (elem.value == 1) {
+                document.getElementById('photo_div').style.display = "block";
+                document.getElementById('photo_div_existing').style.display = "block";
+                document.getElementById('icon_div').style.display = "none";
+            }
+            if (elem.value == 2) {
+                document.getElementById('photo_div').style.display = "none";
+                document.getElementById('photo_div_existing').style.display = "none";
+                document.getElementById('icon_div').style.display = "block";
+            }
+        }
+        function showContentInputArea(elem) {
+            if (elem.value == 'Full Width Page Layout') {
+                document.getElementById('showPageContent').style.display = "block";
+            } else {
+                document.getElementById('showPageContent').style.display = "none";
+            }
+        }
+    </script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#btnAddNew").click(function () {
+
+                var rowNumber = $("#ProductTable tbody tr").length;
+
+                var trNew = "";
+
+                var addLink = "<div class=\"upload-btn" + rowNumber + "\"><input type=\"file\" name=\"photo[]\"  style=\"margin-bottom:5px;\"></div>";
+
+                var deleteRow = "<a href=\"javascript:void()\" class=\"Delete btn btn-danger btn-xs\">X</a>";
+
+                trNew = trNew + "<tr> ";
+
+                trNew += "<td>" + addLink + "</td>";
+                trNew += "<td style=\"width:28px;\">" + deleteRow + "</td>";
+
+                trNew = trNew + " </tr>";
+
+                $("#ProductTable tbody").append(trNew);
+
+            });
+
+            $('#ProductTable').delegate('a.Delete', 'click', function () {
+                $(this).parent().parent().fadeOut('slow').remove();
+                return false;
+            });
+
+        });
+
+
+
+        var items = [];
+        for (i = 1; i <= 24; i++) {
+            items[i] = document.getElementById("tabField" + i);
+        }
+
+        items[1].style.display = 'block';
+        items[2].style.display = 'block';
+        items[3].style.display = 'block';
+        items[4].style.display = 'none';
+
+        items[5].style.display = 'block';
+        items[6].style.display = 'block';
+        items[7].style.display = 'block';
+        items[8].style.display = 'none';
+
+        items[9].style.display = 'block';
+        items[10].style.display = 'block';
+        items[11].style.display = 'block';
+        items[12].style.display = 'none';
+
+        items[13].style.display = 'block';
+        items[14].style.display = 'block';
+        items[15].style.display = 'block';
+        items[16].style.display = 'none';
+
+        items[17].style.display = 'block';
+        items[18].style.display = 'block';
+        items[19].style.display = 'block';
+        items[20].style.display = 'none';
+
+        items[21].style.display = 'block';
+        items[22].style.display = 'block';
+        items[23].style.display = 'block';
+        items[24].style.display = 'none';
+
+        function funcTab1(elem) {
+            var txt = elem.value;
+            if (txt == 'Image Advertisement') {
+                items[1].style.display = 'block';
+                items[2].style.display = 'block';
+                items[3].style.display = 'block';
+                items[4].style.display = 'none';
+            }
+            if (txt == 'Adsense Code') {
+                items[1].style.display = 'none';
+                items[2].style.display = 'none';
+                items[3].style.display = 'none';
+                items[4].style.display = 'block';
+            }
+        };
+
+        function funcTab2(elem) {
+            var txt = elem.value;
+            if (txt == 'Image Advertisement') {
+                items[5].style.display = 'block';
+                items[6].style.display = 'block';
+                items[7].style.display = 'block';
+                items[8].style.display = 'none';
+            }
+            if (txt == 'Adsense Code') {
+                items[5].style.display = 'none';
+                items[6].style.display = 'none';
+                items[7].style.display = 'none';
+                items[8].style.display = 'block';
+            }
+        };
+
+        function funcTab3(elem) {
+            var txt = elem.value;
+            if (txt == 'Image Advertisement') {
+                items[9].style.display = 'block';
+                items[10].style.display = 'block';
+                items[11].style.display = 'block';
+                items[12].style.display = 'none';
+            }
+            if (txt == 'Adsense Code') {
+                items[9].style.display = 'none';
+                items[10].style.display = 'none';
+                items[11].style.display = 'none';
+                items[12].style.display = 'block';
+            }
+        };
+
+        function funcTab4(elem) {
+            var txt = elem.value;
+            if (txt == 'Image Advertisement') {
+                items[13].style.display = 'block';
+                items[14].style.display = 'block';
+                items[15].style.display = 'block';
+                items[16].style.display = 'none';
+            }
+            if (txt == 'Adsense Code') {
+                items[13].style.display = 'none';
+                items[14].style.display = 'none';
+                items[15].style.display = 'none';
+                items[16].style.display = 'block';
+            }
+        };
+
+        function funcTab5(elem) {
+            var txt = elem.value;
+            if (txt == 'Image Advertisement') {
+                items[17].style.display = 'block';
+                items[18].style.display = 'block';
+                items[19].style.display = 'block';
+                items[20].style.display = 'none';
+            }
+            if (txt == 'Adsense Code') {
+                items[17].style.display = 'none';
+                items[18].style.display = 'none';
+                items[19].style.display = 'none';
+                items[20].style.display = 'block';
+            }
+        };
+
+        function funcTab6(elem) {
+            var txt = elem.value;
+            if (txt == 'Image Advertisement') {
+                items[21].style.display = 'block';
+                items[22].style.display = 'block';
+                items[23].style.display = 'block';
+                items[24].style.display = 'none';
+            }
+            if (txt == 'Adsense Code') {
+                items[21].style.display = 'none';
+                items[22].style.display = 'none';
+                items[23].style.display = 'none';
+                items[24].style.display = 'block';
+            }
+        };
+    </script>
+
+</body>
+
+</html>

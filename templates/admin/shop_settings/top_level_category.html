@@ -1,0 +1,494 @@
+{% extends 'admin/basic/basic.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="wrapper">
+
+    {% include 'admin/basic/top_navbar.html' %}
+
+    {% include 'admin/basic/sidebar.html' %}
+
+    <div class="content-wrapper">
+        <section class="content-header">
+            <div class="content-header-left">
+                <h1>View Top Level Categories</h1>
+            </div>
+            <div class="content-header-right">
+                <a href="{% url 'add_category_custom' %}" class="btn btn-primary btn-sm">Add New</a>
+            </div>
+        </section>
+
+
+        <section class="content">
+
+            <div class="row">
+                <div class="col-md-12">
+
+
+                    <div class="box box-info">
+
+                        <div class="box-body table-responsive">
+                            <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="dataTables_length" id="example1_length"><label>Show <select
+                                                    name="example1_length" aria-controls="example1"
+                                                    class="form-control input-sm">
+                                                    <option value="10">10</option>
+                                                    <option value="25">25</option>
+                                                    <option value="50">50</option>
+                                                    <option value="100">100</option>
+                                                </select> entries</label></div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div id="example1_filter" class="dataTables_filter"><label>Search:<input
+                                                    type="search" class="form-control input-sm" placeholder=""
+                                                    aria-controls="example1"></label></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <table id="example1"
+                                            class="table table-bordered table-hover table-striped dataTable no-footer"
+                                            role="grid" aria-describedby="example1_info">
+                                            <thead>
+                                                <tr role="row">
+                                                    <th class="sorting_asc" tabindex="0" aria-controls="example1"
+                                                        rowspan="1" colspan="1" aria-sort="ascending"
+                                                        aria-label="#: activate to sort column descending"
+                                                        style="width: 90.4px;">#</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="example1"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Top Category Name: activate to sort column ascending"
+                                                        style="width: 434.4px;">Top Category Name</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="example1"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Show on Menu?: activate to sort column ascending"
+                                                        style="width: 325.4px;">Show on Menu?</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="example1"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Action: activate to sort column ascending"
+                                                        style="width: 229.2px;">Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for i in all_top_categories %}
+                                                <tr role="row" class="odd">
+                                                    <td class="sorting_1">{{forloop.counter}}</td>
+                                                    <td>{{i.top_category_name}}</td>
+                                                    <td>
+                                                        {% if i.show_top_menu == True %}
+                                                            Yes
+                                                        {% else %}
+                                                            No
+                                                        {% endif %}
+                                                    </td>
+                                                    <td>
+                                                        <a href="{% url 'update_category' i.id %}"
+                                                            class="btn btn-primary btn-xs">Edit</a>
+                                                        <a href="{% url 'delete_category' i.id %}" class="btn btn-danger btn-xs"
+                                                            data-href="{% url 'delete_category' i.id %}" data-toggle="modal"
+                                                            data-target="">Delete</a>
+                                                    </td>
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-5">
+                                        <div class="dataTables_info" id="example1_info" role="status"
+                                            aria-live="polite">Showing 1 to 3 of 3 entries</div>
+                                    </div>
+                                    <div class="col-sm-7">
+                                        <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
+                                            <ul class="pagination">
+                                                <li class="paginate_button previous disabled" id="example1_previous"><a
+                                                        href="#" aria-controls="example1" data-dt-idx="0"
+                                                        tabindex="0">Previous</a></li>
+                                                <li class="paginate_button active"><a href="#" aria-controls="example1"
+                                                        data-dt-idx="1" tabindex="0">1</a></li>
+                                                <li class="paginate_button next disabled" id="example1_next"><a href="#"
+                                                        aria-controls="example1" data-dt-idx="2" tabindex="0">Next</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+        </section>
+
+
+        <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">Delete Confirmation</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure want to delete this item?</p>
+                        <p style="color:red;">Be careful! All products, mid level categories and end level
+                            categories under this top lelvel category will be deleted from all the tables like order
+                            table, payment table, size table, color table, rating table etc.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <a class="btn btn-danger btn-ok">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+
+<script src="js/jquery-2.2.4.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.dataTables.min.js"></script>
+<script src="js/dataTables.bootstrap.min.js"></script>
+<script src="js/select2.full.min.js"></script>
+<script src="js/jquery.inputmask.js"></script>
+<script src="js/jquery.inputmask.date.extensions.js"></script>
+<script src="js/jquery.inputmask.extensions.js"></script>
+<script src="js/moment.min.js"></script>
+<script src="js/bootstrap-datepicker.js"></script>
+<script src="js/icheck.min.js"></script>
+<script src="js/fastclick.js"></script>
+<script src="js/jquery.sparkline.min.js"></script>
+<script src="js/jquery.slimscroll.min.js"></script>
+<script src="js/jquery.fancybox.pack.js"></script>
+<script src="js/app.min.js"></script>
+<script src="js/jscolor.js"></script>
+<script src="js/on-off-switch.js"></script>
+<script src="js/on-off-switch-onload.js"></script>
+<script src="js/clipboard.min.js"></script>
+<script src="js/demo.js"></script>
+<script src="js/summernote.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#editor1').summernote({
+            height: 300
+        });
+        $('#editor2').summernote({
+            height: 300
+        });
+        $('#editor3').summernote({
+            height: 300
+        });
+        $('#editor4').summernote({
+            height: 300
+        });
+        $('#editor5').summernote({
+            height: 300
+        });
+    });
+    $(".top-cat").on('change', function () {
+        var id = $(this).val();
+        var dataString = 'id=' + id;
+        $.ajax
+            ({
+                type: "POST",
+                url: "get-mid-category.php",
+                data: dataString,
+                cache: false,
+                success: function (html) {
+                    $(".mid-cat").html(html);
+                }
+            });
+    });
+    $(".mid-cat").on('change', function () {
+        var id = $(this).val();
+        var dataString = 'id=' + id;
+        $.ajax
+            ({
+                type: "POST",
+                url: "get-end-category.php",
+                data: dataString,
+                cache: false,
+                success: function (html) {
+                    $(".end-cat").html(html);
+                }
+            });
+    });
+</script>
+
+<script>
+    $(function () {
+
+        //Initialize Select2 Elements
+        $(".select2").select2();
+
+        //Datemask dd/mm/yyyy
+        $("#datemask").inputmask("dd-mm-yyyy", { "placeholder": "dd-mm-yyyy" });
+        //Datemask2 mm/dd/yyyy
+        $("#datemask2").inputmask("mm-dd-yyyy", { "placeholder": "mm-dd-yyyy" });
+        //Money Euro
+        $("[data-mask]").inputmask();
+
+        //Date picker
+        $('#datepicker').datepicker({
+            autoclose: true,
+            format: 'dd-mm-yyyy',
+            todayBtn: 'linked',
+        });
+
+        $('#datepicker1').datepicker({
+            autoclose: true,
+            format: 'dd-mm-yyyy',
+            todayBtn: 'linked',
+        });
+
+        //iCheck for checkbox and radio inputs
+        $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+            checkboxClass: 'icheckbox_minimal-blue',
+            radioClass: 'iradio_minimal-blue'
+        });
+        //Red color scheme for iCheck
+        $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
+            checkboxClass: 'icheckbox_minimal-red',
+            radioClass: 'iradio_minimal-red'
+        });
+        //Flat red color scheme for iCheck
+        $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+            checkboxClass: 'icheckbox_flat-green',
+            radioClass: 'iradio_flat-green'
+        });
+
+
+
+        $("#example1").DataTable();
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false
+        });
+
+        $('#confirm-delete').on('show.bs.modal', function (e) {
+            $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+        });
+
+        $('#confirm-approve').on('show.bs.modal', function (e) {
+            $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+        });
+
+    });
+
+    function confirmDelete() {
+        return confirm("Are you sure want to delete this data?");
+    }
+    function confirmActive() {
+        return confirm("Are you sure want to Active?");
+    }
+    function confirmInactive() {
+        return confirm("Are you sure want to Inactive?");
+    }
+
+</script>
+
+<script type="text/javascript">
+    function showDiv(elem) {
+        if (elem.value == 0) {
+            document.getElementById('photo_div').style.display = "none";
+            document.getElementById('icon_div').style.display = "none";
+        }
+        if (elem.value == 1) {
+            document.getElementById('photo_div').style.display = "block";
+            document.getElementById('photo_div_existing').style.display = "block";
+            document.getElementById('icon_div').style.display = "none";
+        }
+        if (elem.value == 2) {
+            document.getElementById('photo_div').style.display = "none";
+            document.getElementById('photo_div_existing').style.display = "none";
+            document.getElementById('icon_div').style.display = "block";
+        }
+    }
+    function showContentInputArea(elem) {
+        if (elem.value == 'Full Width Page Layout') {
+            document.getElementById('showPageContent').style.display = "block";
+        } else {
+            document.getElementById('showPageContent').style.display = "none";
+        }
+    }
+</script>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("#btnAddNew").click(function () {
+
+            var rowNumber = $("#ProductTable tbody tr").length;
+
+            var trNew = "";
+
+            var addLink = "<div class=\"upload-btn" + rowNumber + "\"><input type=\"file\" name=\"photo[]\"  style=\"margin-bottom:5px;\"></div>";
+
+            var deleteRow = "<a href=\"javascript:void()\" class=\"Delete btn btn-danger btn-xs\">X</a>";
+
+            trNew = trNew + "<tr> ";
+
+            trNew += "<td>" + addLink + "</td>";
+            trNew += "<td style=\"width:28px;\">" + deleteRow + "</td>";
+
+            trNew = trNew + " </tr>";
+
+            $("#ProductTable tbody").append(trNew);
+
+        });
+
+        $('#ProductTable').delegate('a.Delete', 'click', function () {
+            $(this).parent().parent().fadeOut('slow').remove();
+            return false;
+        });
+
+    });
+
+
+
+    var items = [];
+    for (i = 1; i <= 24; i++) {
+        items[i] = document.getElementById("tabField" + i);
+    }
+
+    items[1].style.display = 'block';
+    items[2].style.display = 'block';
+    items[3].style.display = 'block';
+    items[4].style.display = 'none';
+
+    items[5].style.display = 'block';
+    items[6].style.display = 'block';
+    items[7].style.display = 'block';
+    items[8].style.display = 'none';
+
+    items[9].style.display = 'block';
+    items[10].style.display = 'block';
+    items[11].style.display = 'block';
+    items[12].style.display = 'none';
+
+    items[13].style.display = 'block';
+    items[14].style.display = 'block';
+    items[15].style.display = 'block';
+    items[16].style.display = 'none';
+
+    items[17].style.display = 'block';
+    items[18].style.display = 'block';
+    items[19].style.display = 'block';
+    items[20].style.display = 'none';
+
+    items[21].style.display = 'block';
+    items[22].style.display = 'block';
+    items[23].style.display = 'block';
+    items[24].style.display = 'none';
+
+    function funcTab1(elem) {
+        var txt = elem.value;
+        if (txt == 'Image Advertisement') {
+            items[1].style.display = 'block';
+            items[2].style.display = 'block';
+            items[3].style.display = 'block';
+            items[4].style.display = 'none';
+        }
+        if (txt == 'Adsense Code') {
+            items[1].style.display = 'none';
+            items[2].style.display = 'none';
+            items[3].style.display = 'none';
+            items[4].style.display = 'block';
+        }
+    };
+
+    function funcTab2(elem) {
+        var txt = elem.value;
+        if (txt == 'Image Advertisement') {
+            items[5].style.display = 'block';
+            items[6].style.display = 'block';
+            items[7].style.display = 'block';
+            items[8].style.display = 'none';
+        }
+        if (txt == 'Adsense Code') {
+            items[5].style.display = 'none';
+            items[6].style.display = 'none';
+            items[7].style.display = 'none';
+            items[8].style.display = 'block';
+        }
+    };
+
+    function funcTab3(elem) {
+        var txt = elem.value;
+        if (txt == 'Image Advertisement') {
+            items[9].style.display = 'block';
+            items[10].style.display = 'block';
+            items[11].style.display = 'block';
+            items[12].style.display = 'none';
+        }
+        if (txt == 'Adsense Code') {
+            items[9].style.display = 'none';
+            items[10].style.display = 'none';
+            items[11].style.display = 'none';
+            items[12].style.display = 'block';
+        }
+    };
+
+    function funcTab4(elem) {
+        var txt = elem.value;
+        if (txt == 'Image Advertisement') {
+            items[13].style.display = 'block';
+            items[14].style.display = 'block';
+            items[15].style.display = 'block';
+            items[16].style.display = 'none';
+        }
+        if (txt == 'Adsense Code') {
+            items[13].style.display = 'none';
+            items[14].style.display = 'none';
+            items[15].style.display = 'none';
+            items[16].style.display = 'block';
+        }
+    };
+
+    function funcTab5(elem) {
+        var txt = elem.value;
+        if (txt == 'Image Advertisement') {
+            items[17].style.display = 'block';
+            items[18].style.display = 'block';
+            items[19].style.display = 'block';
+            items[20].style.display = 'none';
+        }
+        if (txt == 'Adsense Code') {
+            items[17].style.display = 'none';
+            items[18].style.display = 'none';
+            items[19].style.display = 'none';
+            items[20].style.display = 'block';
+        }
+    };
+
+    function funcTab6(elem) {
+        var txt = elem.value;
+        if (txt == 'Image Advertisement') {
+            items[21].style.display = 'block';
+            items[22].style.display = 'block';
+            items[23].style.display = 'block';
+            items[24].style.display = 'none';
+        }
+        if (txt == 'Adsense Code') {
+            items[21].style.display = 'none';
+            items[22].style.display = 'none';
+            items[23].style.display = 'none';
+            items[24].style.display = 'block';
+        }
+    };
+</script>
+{% endblock %}

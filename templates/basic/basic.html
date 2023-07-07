@@ -1,0 +1,123 @@
+{% load static %}
+<!-- This is main configuration File -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta Tags -->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{get_favicon.upload_favicon.url}}">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/jquery.bxslider.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/rating.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/spacing.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap-touch-slider.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/animate.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/tree-menu.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/select2.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}">
+
+    <title>Mohmand Marble Zone</title>
+    <meta name="keywords" content="online Tiled store, Marbles shop, online Tiles and Marbles">
+    <meta name="description" content="Tiles and Marbles php project with mysql database">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+
+    <script type="text/javascript"
+        src="//platform-api.sharethis.com/js/sharethis.js#property=5993ef01e2587a001253a261&product=inline-share-buttons"></script>
+
+
+</head>
+
+<body>
+
+    {% block content %}
+        <h1>Basic Templates</h1>
+    {% endblock %}
+
+    <script src="{% static 'assets/js/jquery-2.2.4.min.js' %}"></script>
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+    <script src="https://js.stripe.com/v2/"></script>
+    <script src="{% static 'assets/js/megamenu.js' %}"></script>
+    <script src="{% static 'assets/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'assets/js/owl.animate.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.bxslider.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'assets/js/rating.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.touchSwipe.min.js' %}"></script>
+    <script src="{% static 'assets/js/bootstrap-touch-slider.js' %}"></script>
+    <script src="{% static 'assets/js/select2.full.min.js' %}"></script>
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+    <script>
+        function confirmDelete() {
+            return confirm("Sure you want to delete this data?");
+        }
+        $(document).ready(function () {
+            advFieldsStatus = $('#advFieldsStatus').val();
+
+            $('#paypal_form').hide();
+            $('#stripe_form').hide();
+            $('#bank_form').hide();
+
+            $('#advFieldsStatus').on('change', function () {
+                advFieldsStatus = $('#advFieldsStatus').val();
+                if (advFieldsStatus == '') {
+                    $('#paypal_form').hide();
+                    $('#stripe_form').hide();
+                    $('#bank_form').hide();
+                } else if (advFieldsStatus == 'PayPal') {
+                    $('#paypal_form').show();
+                    $('#stripe_form').hide();
+                    $('#bank_form').hide();
+                } else if (advFieldsStatus == 'Stripe') {
+                    $('#paypal_form').hide();
+                    $('#stripe_form').show();
+                    $('#bank_form').hide();
+                } else if (advFieldsStatus == 'Bank Deposit') {
+                    $('#paypal_form').hide();
+                    $('#stripe_form').hide();
+                    $('#bank_form').show();
+                }
+            });
+        });
+
+
+        $(document).on('submit', '#stripe_form', function () {
+            // createToken returns immediately - the supplied callback submits the form if there are no errors
+            $('#submit-button').prop("disabled", true);
+            $("#msg-container").hide();
+            Stripe.card.createToken({
+                number: $('.card-number').val(),
+                cvc: $('.card-cvc').val(),
+                exp_month: $('.card-expiry-month').val(),
+                exp_year: $('.card-expiry-year').val()
+                // name: $('.card-holder-name').val()
+            }, stripeResponseHandler);
+            return false;
+        });
+        Stripe.setPublishableKey('pk_test_0SwMWadgu8DwmEcPdUPRsZ7b');
+        function stripeResponseHandler(status, response) {
+            if (response.error) {
+                $('#submit-button').prop("disabled", false);
+                $("#msg-container").html('<div style="color: red;border: 1px solid;margin: 10px 0px;padding: 5px;"><strong>Error:</strong> ' + response.error.message + '</div>');
+                $("#msg-container").show();
+            } else {
+                var form$ = $("#stripe_form");
+                var token = response['id'];
+                form$.append("<input type='hidden' name='stripeToken' value='" + token + "' />");
+                form$.get(0).submit();
+            }
+        }
+    </script>
+</body>
+
+</html>

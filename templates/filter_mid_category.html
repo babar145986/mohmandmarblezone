@@ -1,0 +1,110 @@
+{% extends 'basic/basic.html' %}
+
+{% load static %}
+
+{% block content %}
+
+    {% include 'basic/top_navbar.html' %}
+
+    {% include 'basic/center_navbar.html' %}
+
+    {% include 'basic/main_navbar.html' %}
+
+    <div class="page-banner" style="background-image: url({% static 'assets/uploads/banner_product_category.jpg' %})">
+        <div class="inner">
+            <h1>Category: Marbles </h1>
+        </div>
+    </div>
+
+    <div class="page">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+
+                    <h3>Categories</h3>
+                    <div id="left" class="span3">
+                        <ul id="menu-group-1" class="nav menu">
+                            {% for top_category in top_categories %}
+                            {% if top_category.show_top_menu %}
+                            <li class="cat-level-1 deeper parent">
+                                <a class="" href="{% url 'search_product_category' top_category.id %}">
+                                    <span data-toggle="collapse" data-parent="#menu-group-1" href="#cat-lvl1-id-{{ forloop.counter }}"
+                                        class="sign"><i class="fa fa-plus"></i></span>
+                                    <span class="lbl">{{ top_category.top_category_name }}</span>
+                                </a>
+                                <ul class="children nav-child unstyled small collapse" id="cat-lvl1-id-{{ forloop.counter }}">
+                                    {% for mid_category in top_category.add_mid_category_set.all %}
+                                    {% if mid_category.show_mid_menu %}
+                                    <li class="deeper parent">
+                                        <a class="" href="{% url 'filter_mid_category' mid_category.id %}">
+                                            <span data-toggle="collapse" data-parent="#menu-group-1"
+                                                href="#cat-lvl2-id-{{ forloop.parentloop.counter }}{{ forloop.counter }}" class="sign"><i class="fa fa-plus"></i></span>
+                                            <span class="lbl lbl1">{{ mid_category.mid_category_name }}</span>
+                                        </a>
+                                        <ul class="children nav-child unstyled small collapse" id="cat-lvl2-id-{{ forloop.parentloop.counter }}{{ forloop.counter }}">
+                                            {% for end_category in mid_category.add_end_category_set.all %}
+                                            {% if end_category.show_end_menu %}
+                                            <li class="item-111">
+                                                <a class="" href="{% url 'filter_end_category' end_category.id %}">
+                                                    <span class="sign"></span>
+                                                    <span class="lbl lbl1">{{ end_category.end_category_name }}</span>
+                                                </a>
+                                            </li>
+                                            {% endif %}
+                                            {% endfor %}
+                                        </ul>
+                                    </li>
+                                    {% endif %}
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                            {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    
+                </div>
+                <div class="col-md-9">
+
+                    <h3>All Products Under "Marbles"</h3>
+                    <div class="product product-cat">
+
+                        <div class="row">
+                            {% if products %}
+                            {% for i in products %}
+                            <div class="col-md-4 item item-product-cat">
+                                <div class="inner">
+                                    <div class="thumb">
+                                        <a href="{% url 'single_product' i.id %}">
+                                        <div class="photo"
+                                            style="background-image:url({{i.featured_photo.url}});">
+                                        </div>
+                                        </a>
+                                        <div class=""></div>
+                                    </div>
+                                    <div class="text">
+                                        <h3><a href="{% url 'single_product' i.id %}">{{i.product_name}}</a></h3>
+                                        <h4>
+                                            SQ.FT - <span style="color: green; font-weight: bold; font-size: 25px;"> {{i.current_price}} </span> Rs
+                                        </h4>
+                                        <div class="rating">
+                                        </div>
+                                        <p><a href="{% url 'single_product' i.id %}"><i class="fa fa-shopping-cart"></i> Add to
+                                                Cart</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            {% else %}
+                                <p class="alert alert-danger">Sorry no record found</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include 'basic/footer.html' %}
+
+    {% endblock %}

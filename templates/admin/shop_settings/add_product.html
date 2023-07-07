@@ -1,0 +1,510 @@
+{% extends 'admin/basic/basic.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="wrapper">
+
+    {% include 'admin/basic/top_navbar.html' %}
+
+    {% include 'admin/basic/sidebar.html' %}
+
+        <div class="content-wrapper">
+
+            <section class="content-header">
+                <div class="content-header-left">
+                    <h1>Add Product</h1>
+                </div>
+                <div class="content-header-right">
+                    <a href="{% url 'marble_management' %}" class="btn btn-primary btn-sm">View All</a>
+                </div>
+            </section>
+            <section class="content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="box box-info">
+                                <div class="box-body">
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-3 control-label">Top Level Category Name
+                                            <span>*</span></label>
+                                        <div class="col-sm-4">
+                                            {{ form.select_top_category }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-3 control-label">Mid Level Category Name
+                                            <span>*</span></label>
+                                        <div class="col-sm-4">
+                                            {{form.select_mid_category}}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-3 control-label">End Level Category Name
+                                            <span>*</span></label>
+                                        <div class="col-sm-4">
+                                            {{form.select_end_category}}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-3 control-label">Product Name <span>*</span></label>
+                                        <div class="col-sm-4">
+                                            {{form.product_name}}
+                                        </div>
+                                    </div>
+                                    <!-- <div class="form-group">
+                                        <label for="" class="col-sm-3 control-label">Old Price <br><span
+                                                style="font-size:10px;font-weight:normal;">(In Rs)</span></label>
+                                        <div class="col-sm-4">
+                                            {{form.old_price}}
+                                        </div>
+                                    </div> -->
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-3 control-label">Current Price
+                                            <span>*</span><br><span style="font-size:10px;font-weight:normal;">(In
+                                                Rs)</span></label>
+                                        <div class="col-sm-4">
+                                            {{form.current_price}}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-3 control-label">Quantity <span>*</span></label>
+                                        <div class="col-sm-4">
+                                            {{form.quantity}}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-3 control-label">Select Size</label>
+                                        <div class="col-sm-4">
+                                                {{form.select_size}}
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-3 control-label">Select Color</label>
+                                        <div class="col-sm-4">
+                                            {{form.select_color}}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-3 control-label">Featured Photo
+                                            <span>*</span></label>
+                                        <div class="col-sm-4" style="padding-top:4px;">
+                                            {{form.featured_photo}}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-3 control-label">Image 1
+                                            <span></span></label>
+                                        <div class="col-sm-4" style="padding-top:4px;">
+                                            {{form.photo_1}}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-3 control-label">Image 2
+                                            <span></span></label>
+                                        <div class="col-sm-4" style="padding-top:4px;">
+                                            {{form.photo_2}}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-3 control-label">Image 3</label>
+                                            <span></span></label>
+                                        <div class="col-sm-4" style="padding-top:4px;">
+                                            {{form.photo_3}}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-3 control-label">Image 4
+                                            <span></span></label>
+                                        <div class="col-sm-4" style="padding-top:4px;">
+                                            {{form.photo_4}}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-3 control-label">Description</label>
+                                        <div class="col-sm-8">
+                                            {{form.description}}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-3 control-label">Short Description</label>
+                                        <div class="col-sm-8">
+                                            {{form.short_description}}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-3 control-label">Features</label>
+                                        <div class="col-sm-8">
+                                            {{form.featured_desc}}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-3 control-label">Conditions</label>
+                                        <div class="col-sm-8">
+                                            {{form.condition_desc}}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-3 control-label">Return Policy</label>
+                                        <div class="col-sm-8">
+                                            {{form.return_policy_desc}}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-3 control-label">Is Featured?</label>
+                                        <div class="col-sm-1">
+                                            {{form.is_active}}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-3 control-label">Is Active?</label>
+                                        <div class="col-sm-1">
+                                            {{form.is_featured}}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-3 control-label"></label>
+                                        <div class="col-sm-6">
+                                            <button type="submit" class="btn btn-success pull-left" name="form1">Add
+                                                Product</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+
+
+                    </div>
+                </div>
+
+            </section>
+
+        </div>
+
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $('#editor1').summernote({
+                height: 300
+            });
+            $('#editor2').summernote({
+                height: 300
+            });
+            $('#editor3').summernote({
+                height: 300
+            });
+            $('#editor4').summernote({
+                height: 300
+            });
+            $('#editor5').summernote({
+                height: 300
+            });
+        });
+        $(".top-cat").on('change', function () {
+            var id = $(this).val();
+            var dataString = 'id=' + id;
+            $.ajax
+                ({
+                    type: "POST",
+                    url: "get-mid-category.php",
+                    data: dataString,
+                    cache: false,
+                    success: function (html) {
+                        $(".mid-cat").html(html);
+                    }
+                });
+        });
+        $(".mid-cat").on('change', function () {
+            var id = $(this).val();
+            var dataString = 'id=' + id;
+            $.ajax
+                ({
+                    type: "POST",
+                    url: "get-end-category.php",
+                    data: dataString,
+                    cache: false,
+                    success: function (html) {
+                        $(".end-cat").html(html);
+                    }
+                });
+        });
+    </script>
+
+    <script>
+        $(function () {
+
+            //Initialize Select2 Elements
+            $(".select2").select2();
+
+            //Datemask dd/mm/yyyy
+            $("#datemask").inputmask("dd-mm-yyyy", { "placeholder": "dd-mm-yyyy" });
+            //Datemask2 mm/dd/yyyy
+            $("#datemask2").inputmask("mm-dd-yyyy", { "placeholder": "mm-dd-yyyy" });
+            //Money Euro
+            $("[data-mask]").inputmask();
+
+            //Date picker
+            $('#datepicker').datepicker({
+                autoclose: true,
+                format: 'dd-mm-yyyy',
+                todayBtn: 'linked',
+            });
+
+            $('#datepicker1').datepicker({
+                autoclose: true,
+                format: 'dd-mm-yyyy',
+                todayBtn: 'linked',
+            });
+
+            //iCheck for checkbox and radio inputs
+            $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+                checkboxClass: 'icheckbox_minimal-blue',
+                radioClass: 'iradio_minimal-blue'
+            });
+            //Red color scheme for iCheck
+            $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
+                checkboxClass: 'icheckbox_minimal-red',
+                radioClass: 'iradio_minimal-red'
+            });
+            //Flat red color scheme for iCheck
+            $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+                checkboxClass: 'icheckbox_flat-green',
+                radioClass: 'iradio_flat-green'
+            });
+
+
+
+            $("#example1").DataTable();
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false
+            });
+
+            $('#confirm-delete').on('show.bs.modal', function (e) {
+                $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+            });
+
+            $('#confirm-approve').on('show.bs.modal', function (e) {
+                $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+            });
+
+        });
+
+        function confirmDelete() {
+            return confirm("Are you sure want to delete this data?");
+        }
+        function confirmActive() {
+            return confirm("Are you sure want to Active?");
+        }
+        function confirmInactive() {
+            return confirm("Are you sure want to Inactive?");
+        }
+
+    </script>
+
+    <script type="text/javascript">
+        function showDiv(elem) {
+            if (elem.value == 0) {
+                document.getElementById('photo_div').style.display = "none";
+                document.getElementById('icon_div').style.display = "none";
+            }
+            if (elem.value == 1) {
+                document.getElementById('photo_div').style.display = "block";
+                document.getElementById('photo_div_existing').style.display = "block";
+                document.getElementById('icon_div').style.display = "none";
+            }
+            if (elem.value == 2) {
+                document.getElementById('photo_div').style.display = "none";
+                document.getElementById('photo_div_existing').style.display = "none";
+                document.getElementById('icon_div').style.display = "block";
+            }
+        }
+        function showContentInputArea(elem) {
+            if (elem.value == 'Full Width Page Layout') {
+                document.getElementById('showPageContent').style.display = "block";
+            } else {
+                document.getElementById('showPageContent').style.display = "none";
+            }
+        }
+    </script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#btnAddNew").click(function () {
+
+                var rowNumber = $("#ProductTable tbody tr").length;
+
+                var trNew = "";
+
+                var addLink = "<div class=\"upload-btn" + rowNumber + "\"><input type=\"file\" name=\"photo[]\"  style=\"margin-bottom:5px;\"></div>";
+
+                var deleteRow = "<a href=\"javascript:void()\" class=\"Delete btn btn-danger btn-xs\">X</a>";
+
+                trNew = trNew + "<tr> ";
+
+                trNew += "<td>" + addLink + "</td>";
+                trNew += "<td style=\"width:28px;\">" + deleteRow + "</td>";
+
+                trNew = trNew + " </tr>";
+
+                $("#ProductTable tbody").append(trNew);
+
+            });
+
+            $('#ProductTable').delegate('a.Delete', 'click', function () {
+                $(this).parent().parent().fadeOut('slow').remove();
+                return false;
+            });
+
+        });
+
+
+
+        var items = [];
+        for (i = 1; i <= 24; i++) {
+            items[i] = document.getElementById("tabField" + i);
+        }
+
+        items[1].style.display = 'block';
+        items[2].style.display = 'block';
+        items[3].style.display = 'block';
+        items[4].style.display = 'none';
+
+        items[5].style.display = 'block';
+        items[6].style.display = 'block';
+        items[7].style.display = 'block';
+        items[8].style.display = 'none';
+
+        items[9].style.display = 'block';
+        items[10].style.display = 'block';
+        items[11].style.display = 'block';
+        items[12].style.display = 'none';
+
+        items[13].style.display = 'block';
+        items[14].style.display = 'block';
+        items[15].style.display = 'block';
+        items[16].style.display = 'none';
+
+        items[17].style.display = 'block';
+        items[18].style.display = 'block';
+        items[19].style.display = 'block';
+        items[20].style.display = 'none';
+
+        items[21].style.display = 'block';
+        items[22].style.display = 'block';
+        items[23].style.display = 'block';
+        items[24].style.display = 'none';
+
+        function funcTab1(elem) {
+            var txt = elem.value;
+            if (txt == 'Image Advertisement') {
+                items[1].style.display = 'block';
+                items[2].style.display = 'block';
+                items[3].style.display = 'block';
+                items[4].style.display = 'none';
+            }
+            if (txt == 'Adsense Code') {
+                items[1].style.display = 'none';
+                items[2].style.display = 'none';
+                items[3].style.display = 'none';
+                items[4].style.display = 'block';
+            }
+        };
+
+        function funcTab2(elem) {
+            var txt = elem.value;
+            if (txt == 'Image Advertisement') {
+                items[5].style.display = 'block';
+                items[6].style.display = 'block';
+                items[7].style.display = 'block';
+                items[8].style.display = 'none';
+            }
+            if (txt == 'Adsense Code') {
+                items[5].style.display = 'none';
+                items[6].style.display = 'none';
+                items[7].style.display = 'none';
+                items[8].style.display = 'block';
+            }
+        };
+
+        function funcTab3(elem) {
+            var txt = elem.value;
+            if (txt == 'Image Advertisement') {
+                items[9].style.display = 'block';
+                items[10].style.display = 'block';
+                items[11].style.display = 'block';
+                items[12].style.display = 'none';
+            }
+            if (txt == 'Adsense Code') {
+                items[9].style.display = 'none';
+                items[10].style.display = 'none';
+                items[11].style.display = 'none';
+                items[12].style.display = 'block';
+            }
+        };
+
+        function funcTab4(elem) {
+            var txt = elem.value;
+            if (txt == 'Image Advertisement') {
+                items[13].style.display = 'block';
+                items[14].style.display = 'block';
+                items[15].style.display = 'block';
+                items[16].style.display = 'none';
+            }
+            if (txt == 'Adsense Code') {
+                items[13].style.display = 'none';
+                items[14].style.display = 'none';
+                items[15].style.display = 'none';
+                items[16].style.display = 'block';
+            }
+        };
+
+        function funcTab5(elem) {
+            var txt = elem.value;
+            if (txt == 'Image Advertisement') {
+                items[17].style.display = 'block';
+                items[18].style.display = 'block';
+                items[19].style.display = 'block';
+                items[20].style.display = 'none';
+            }
+            if (txt == 'Adsense Code') {
+                items[17].style.display = 'none';
+                items[18].style.display = 'none';
+                items[19].style.display = 'none';
+                items[20].style.display = 'block';
+            }
+        };
+
+        function funcTab6(elem) {
+            var txt = elem.value;
+            if (txt == 'Image Advertisement') {
+                items[21].style.display = 'block';
+                items[22].style.display = 'block';
+                items[23].style.display = 'block';
+                items[24].style.display = 'none';
+            }
+            if (txt == 'Adsense Code') {
+                items[21].style.display = 'none';
+                items[22].style.display = 'none';
+                items[23].style.display = 'none';
+                items[24].style.display = 'block';
+            }
+        };
+
+
+
+
+    </script>
+
+    {% endblock %}

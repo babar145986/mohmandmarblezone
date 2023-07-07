@@ -1,0 +1,82 @@
+<!-- Side Bar to Manage Shop Activities -->
+<aside class="main-sidebar">
+    <section class="sidebar">
+
+        <ul class="sidebar-menu">
+
+            <li class="treeview active">
+                <a href="{% url 'administrator' %}">
+                    <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="treeview ">
+                <a href="{% url 'website_settings' %}">
+                    <i class="fa fa-sliders"></i> <span>Website Settings</span>
+                </a>
+            </li>
+            <li class="treeview ">
+                <a href="#">
+                    <i class="fa fa-cogs"></i>
+                    <span>Shop Settings</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{% url 'product_size' %}"><i class="fa fa-circle-o"></i> Size</a></li>
+                    <li><a href="{% url 'product_color' %}"><i class="fa fa-circle-o"></i> Color</a></li>
+                    <li><a href="{% url 'product_country' %}"><i class="fa fa-circle-o"></i> Country</a></li>
+                   
+                    <li><a href="{% url 'top_level' %}"><i class="fa fa-circle-o"></i> Top Level Category</a></li>
+                    <li><a href="{% url 'mid_level' %}"><i class="fa fa-circle-o"></i> Mid Level Category</a></li>
+                    <li><a href="{% url 'end_level' %}"><i class="fa fa-circle-o"></i> End Level Category</a></li>
+                </ul>
+            </li>
+
+
+            <li class="treeview ">
+                <a href="{% url 'marble_management' %}">
+                    <i class="fa fa-shopping-bag"></i> <span>Marbles Management</span>
+                </a>
+            </li>
+
+
+            <li class="treeview ">
+                <a href="{% url 'order_management' %}">
+                    <i class="fa fa-sticky-note"></i> <span>Order Management</span>
+                </a>
+            </li>
+           
+            <li class="treeview ">
+                <a href="{% url 'registered_users' %}">
+                    <i class="fa fa-user-plus"></i> <span>Registered Customer</span>
+                </a>
+            </li>
+
+            <li class="treeview ">
+                <a href="{% url 'manage_slider' %}">
+                    <i class="fa fa-tasks"></i> <span>Manage Slider</span>
+                </a>
+            </li>
+
+            <li class="treeview ">
+                <a href="{% url 'add_social_media' %}">
+                    <i class="fa fa-globe"></i> <span>Social Media</span>
+                </a>
+            </li>
+
+            <li class="treeview ">
+                <a href="{% url 'contact_message_view' %}">
+                    <i class="fa fa-globe"></i> <span>Contact Messages</span>
+                </a>
+            </li>
+
+            <li class="treeview ">
+                <a href="{% url 'index' %}" target="__blank">
+                    <i class="fa fa-globe"></i> <span>Front-end</span>
+                </a>
+            </li>
+
+        </ul>
+    </section>
+</aside>
